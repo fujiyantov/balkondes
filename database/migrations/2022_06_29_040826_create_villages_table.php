@@ -24,6 +24,7 @@ class CreateVillagesTable extends Migration
             $table->double('long')->nullable();
             $table->unsignedBigInteger('is_published')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\CreateProductRequest;
+use App\Models\ProductGallery;
 
 class ProductController extends Controller
 {
@@ -40,8 +45,12 @@ class ProductController extends Controller
                     return 'Rp ' . number_format($item->price);
                 })
                 ->editColumn('image', function ($item) {
-                    return '<div class="d-flex align-items-center">
-                                <img class="img img-thumbnail img-fluid" width="75" src="' . $item->image . '" />
+                    $imageLink = Storage::url('/assets/products/images/' . $item->image);
+                    if (substr($item->image, 0, 5) == 'https') {
+                        $imageLink = $item->image;
+                    }
+                    return  '<div class="d-flex align-items-center">
+                                <img class="img img-thumbnail img-fluid" width="75" src="' . $imageLink . '" />
                             </div>';
                 })
                 ->addIndexColumn()
@@ -59,7 +68,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $villages = Village::all();
+        return view('pages.admin.product.create', ['villages' => $villages]);
     }
 
     /**
@@ -68,9 +78,40 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        //
+
+        DB::beginTransaction();
+        try {
+
+            $data = $request->only(array_keys($request->rules()));
+            if ($request->hasFile('image')) {
+                $data['image'] = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('assets/products/images', $data['image']);
+            }
+
+            $product = Product::create($data);
+            if ($request->hasFile('photo')) {
+
+                foreach ($request->file('photo') as $photo) {
+
+                    $photoName = $photo->getClientOriginalName();
+                    $photo->storeAs('assets/products/gallery', $photoName);
+
+                    $gallery = new ProductGallery();
+                    $gallery->product_id = $product->id;
+                    $gallery->image = $photoName;
+                    $gallery->save();
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('products.index')->with('success', 'Create Product has been successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            dd($e);
+            throw log($e);
+        }
     }
 
     /**

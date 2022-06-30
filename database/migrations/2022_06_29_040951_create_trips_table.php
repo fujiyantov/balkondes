@@ -22,10 +22,11 @@ class CreateTripsTable extends Migration
             $table->string('image');
             $table->text('address');
             $table->text('description');
-            $table->text('addtional_information');
+            $table->text('addtional_information')->nullable();
             $table->string('seller_name');
             $table->unsignedBigInteger('is_published')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

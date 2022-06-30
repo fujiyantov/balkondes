@@ -12,7 +12,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/favicons/favicon.ico') }}" />
     </head>
-    <body class="bg-secondary">
+    <body class="bg-secondary" style="background-image: url('/background.jpeg')">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 @yield('main')
