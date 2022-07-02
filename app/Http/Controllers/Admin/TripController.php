@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Trip;
+use App\Models\TripGallery;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateTripRequest;
+use App\Http\Requests\UpdateTripRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class TripController extends Controller
@@ -59,7 +62,8 @@ class TripController extends Controller
      */
     public function create()
     {
-        //
+        $villages = Village::all();
+        return view('pages.admin.trip.create', ['villages' => $villages]);
     }
 
     /**
@@ -68,9 +72,38 @@ class TripController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTripRequest $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $data = $request->only(array_keys($request->rules()));
+            if ($request->hasFile('image')) {
+                $data['image'] = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('assets/trips/images', $data['image']);
+            }
+
+            $trip = Trip::create($data);
+            if ($request->hasFile('photo')) {
+
+                foreach ($request->file('photo') as $photo) {
+
+                    $photoName = $photo->getClientOriginalName();
+                    $photo->storeAs('assets/trips/gallery', $photoName);
+
+                    $gallery = new TripGallery();
+                    $gallery->trip_id = $trip->id;
+                    $gallery->image = $photoName;
+                    $gallery->save();
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('trips.index')->with('success', 'Create Trip has been successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw log($e);
+        }
     }
 
     /**
@@ -81,7 +114,10 @@ class TripController extends Controller
      */
     public function show($id)
     {
-        //
+        $trips = Trip::findOrFail($id);
+        return view('pages.admin.trip.show', [
+            'trips' => $trips,
+        ]);
     }
 
     /**
@@ -92,7 +128,12 @@ class TripController extends Controller
      */
     public function edit($id)
     {
-        //
+        $trips = Trip::findOrFail($id);
+        $villages = Village::all();
+        return view('pages.admin.product.edit', [
+            'villages' => $villages,
+            'trips' => $trips,
+        ]);
     }
 
     /**
@@ -102,9 +143,53 @@ class TripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTripRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $trip = Trip::findOrFail($id);
+
+            $data = $request->only(array_keys($request->rules()));
+            if ($request->hasFile('image')) {
+                $data['image'] = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('assets/trips/images', $data['image']);
+            }
+
+            $trip->village_id = $data['village_id'];
+            $trip->name = $data['name'];
+            $trip->price = $data['price'];
+            $trip->category = $data['category'];
+            $trip->image = $data['image'];
+            $trip->address = $data['address'];
+            $trip->description = $data['description'];
+            $trip->addtional_information = $data['addtional_information'];
+            $trip->seller_name = $data['seller_name'];
+            $trip->is_published = $data['is_published'];
+
+            $trip->save();
+            if ($request->hasFile('photo')) {
+
+                TripGallery::where('product_id', $trip->id)->delete();
+
+                foreach ($request->file('photo') as $photo) {
+
+                    $photoName = $photo->getClientOriginalName();
+                    $photo->storeAs('assets/trips/gallery', $photoName);
+
+                    $gallery = new TripGallery();
+                    $gallery->trip_id = $trip->id;
+                    $gallery->image = $photoName;
+                    $gallery->save();
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('trips.index')->with('success', 'Update Trip has been successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw log($e);
+        }
     }
 
     /**
@@ -115,6 +200,9 @@ class TripController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Trip::findOrFail($id);
+        $item->delete();
+
+        return redirect()->back()->with('success', 'Delete Trip has been successfully');
     }
 }

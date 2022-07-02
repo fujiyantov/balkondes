@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\ProductGallery;
 
 class ProductController extends Controller
@@ -109,7 +110,6 @@ class ProductController extends Controller
             return redirect()->route('products.index')->with('success', 'Create Product has been successfully');
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e);
             throw log($e);
         }
     }
@@ -122,7 +122,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::findOrFail($id);
+        return view('pages.admin.product.show', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -133,7 +136,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Product::findOrFail($id);
+        $villages = Village::all();
+        return view('pages.admin.product.edit', [
+            'villages' => $villages,
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -143,9 +151,53 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $product = Product::findOrFail($id);
+
+            $data = $request->only(array_keys($request->rules()));
+            if ($request->hasFile('image')) {
+                $data['image'] = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('assets/products/images', $data['image']);
+            }
+
+            $product->village_id = $data['village_id'];
+            $product->name = $data['name'];
+            $product->price = $data['price'];
+            $product->category = $data['category'];
+            $product->image = $data['image'];
+            $product->address = $data['address'];
+            $product->description = $data['description'];
+            $product->addtional_information = $data['addtional_information'];
+            $product->seller_name = $data['seller_name'];
+            $product->is_published = $data['is_published'];
+
+            $product->save();
+            if ($request->hasFile('photo')) {
+
+                ProductGallery::where('product_id', $product->id)->delete();
+
+                foreach ($request->file('photo') as $photo) {
+
+                    $photoName = $photo->getClientOriginalName();
+                    $photo->storeAs('assets/products/gallery', $photoName);
+
+                    $gallery = new ProductGallery();
+                    $gallery->product_id = $product->id;
+                    $gallery->image = $photoName;
+                    $gallery->save();
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('products.index')->with('success', 'Update Product has been successfully');
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw log($e);
+        }
     }
 
     /**
@@ -156,6 +208,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Product::findOrFail($id);
+        $item->delete();
+
+        return redirect()->back()->with('success', 'Delete Product has been successfully');
     }
 }
