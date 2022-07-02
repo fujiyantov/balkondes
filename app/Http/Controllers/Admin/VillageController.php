@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateVillageRequest;
+use App\Http\Requests\UpdateVillageRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class VillageController extends Controller
@@ -56,7 +59,7 @@ class VillageController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.village.create');
     }
 
     /**
@@ -65,9 +68,16 @@ class VillageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateVillageRequest $request)
     {
-        //
+        try {
+            $data = $request->only(array_keys($request->rules()));
+            $village = Village::create($data);
+
+            return redirect()->route('village.index')->with('success', 'Create Village has been successfully');
+        } catch (\Exception $e) {
+            throw log($e);
+        }
     }
 
     /**
@@ -78,7 +88,10 @@ class VillageController extends Controller
      */
     public function show($id)
     {
-        //
+        $villages = Village::findOrFail($id);
+        return view('pages.admin.village.show', [
+            'villages' => $villages,
+        ]);
     }
 
     /**
@@ -89,7 +102,10 @@ class VillageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $villages = Village::findOrFail($id);
+        return view('pages.admin.village.edit', [
+            'villages' => $villages,
+        ]);
     }
 
     /**
@@ -99,9 +115,25 @@ class VillageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateVillageRequest $request, $id)
     {
-        //
+        try {
+            $data = $request->only(array_keys($request->rules()));
+            $village = Village::findOrFail($id);
+            $village->name = $data['name'];
+            $village->description = $data['description'];
+            $village->image = $data['image'];
+            $village->video_id = $data['video_id'];
+            $village->video_vr = $data['video_vr'];
+            $village->lat = $data['lat'];
+            $village->long = $data['long'];
+            $village->is_published = $data['is_published'];
+            $village->save();
+
+            return redirect()->route('village.index')->with('success', 'Create Village has been successfully');
+        } catch (\Exception $e) {
+            throw log($e);
+        }
     }
 
     /**
@@ -112,6 +144,9 @@ class VillageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Village::findOrFail($id);
+        $item->delete();
+
+        return redirect()->back()->with('success', 'Delete Village has been successfully');
     }
 }

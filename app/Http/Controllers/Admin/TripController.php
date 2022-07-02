@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Trip;
 use App\Models\TripGallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTripRequest;
 use App\Http\Requests\UpdateTripRequest;

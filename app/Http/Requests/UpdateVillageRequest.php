@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProductRequest extends FormRequest
+class UpdateVillageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,41 +24,33 @@ class CreateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'village_id' => [
-                'required',
-                'numeric',
-                'min:0'
-            ],
             'name' => [
                 'required',
                 'string',
                 'min:3'
             ],
-            'price' => [
-                'required',
-                'numeric',
-                'min:1000'
-            ],
-            'category' => [
-                'numeric',
-                'min:0'
+            'description' => [
+                'string'
             ],
             'image' => [
                 'required',
                 'image',
                 'max:10240'
             ],
-            'address' => [
+            'video_id' => [
+                'required',
                 'string',
             ],
-            'description' => [
+            'video_vr' => [
                 'string',
             ],
-            'addtional_information' => [
-                'string',
+            'lat' => [
+                'required',
+                'double'
             ],
-            'seller_name' => [
-                'string',
+            'long' => [
+                'required',
+                'double'
             ],
             'is_published' => [
 
