@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Trip;
+use App\Models\Village;
 use App\Models\TripGallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateTripRequest;
 use App\Http\Requests\UpdateTripRequest;
 use Yajra\DataTables\Facades\DataTables;
@@ -44,8 +46,12 @@ class TripController extends Controller
                     return 'Rp ' . number_format($item->price);
                 })
                 ->editColumn('image', function ($item) {
+                    $imageLink = Storage::url('/assets/trips/images/' . $item->image);
+                    if (substr($item->image, 0, 5) == 'https') {
+                        $imageLink = $item->image;
+                    }
                     return '<div class="d-flex align-items-center">
-                                <img class="img img-thumbnail img-fluid" width="75" src="' . $item->image . '" />
+                                <img class="img img-thumbnail img-fluid" width="75" src="' . $imageLink . '" />
                             </div>';
                 })
                 ->addIndexColumn()
@@ -79,7 +85,9 @@ class TripController extends Controller
         try {
 
             $data = $request->only(array_keys($request->rules()));
+            
             if ($request->hasFile('image')) {
+                
                 $data['image'] = $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('assets/trips/images', $data['image']);
             }

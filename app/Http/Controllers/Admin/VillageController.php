@@ -6,9 +6,10 @@ use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\CreateVillageRequest;
 use App\Http\Requests\UpdateVillageRequest;
-use Yajra\DataTables\Facades\DataTables;
 
 class VillageController extends Controller
 {
@@ -40,8 +41,14 @@ class VillageController extends Controller
                     return ucwords($item->name);
                 })
                 ->editColumn('image', function ($item) {
+
+                    $imageLink = Storage::url('/assets/villages/images/' . $item->image);
+                    if (substr($item->image, 0, 5) == 'https') {
+                        $imageLink = $item->image;
+                    }
+
                     return '<div class="d-flex align-items-center">
-                                <img class="img img-thumbnail img-fluid" width="75" src="' . $item->image . '" />
+                                <img class="img img-thumbnail img-fluid" width="75" src="' . $imageLink . '" />
                             </div>';
                 })
                 ->addIndexColumn()
@@ -72,11 +79,18 @@ class VillageController extends Controller
     {
         try {
             $data = $request->only(array_keys($request->rules()));
-            $village = Village::create($data);
 
-            return redirect()->route('village.index')->with('success', 'Create Village has been successfully');
+            if ($request->hasFile('image')) {
+
+                $data['image'] = $request->file('image')->getClientOriginalName();
+                $request->file('image')->storeAs('assets/villages/images', $data['image']);
+            }
+
+            $test = Village::create($data);
+
+            return redirect()->route('villages.index')->with('success', 'Create Village has been successfully');
         } catch (\Exception $e) {
-            throw log($e);
+            throw log($e->getMessage());
         }
     }
 
@@ -117,23 +131,34 @@ class VillageController extends Controller
      */
     public function update(UpdateVillageRequest $request, $id)
     {
-        try {
-            $data = $request->only(array_keys($request->rules()));
-            $village = Village::findOrFail($id);
-            $village->name = $data['name'];
-            $village->description = $data['description'];
-            $village->image = $data['image'];
-            $village->video_id = $data['video_id'];
-            $village->video_vr = $data['video_vr'];
-            $village->lat = $data['lat'];
-            $village->long = $data['long'];
-            $village->is_published = $data['is_published'];
-            $village->save();
+        $data = $request->only(array_keys($request->rules()));
 
-            return redirect()->route('village.index')->with('success', 'Create Village has been successfully');
-        } catch (\Exception $e) {
-            throw log($e);
+        $village = Village::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('assets/villages/images', $data['image']);
         }
+
+        $village->name = $data['name'];
+        $village->description = $data['description'];
+
+        if ($request->hasFile('image')) {
+            $village->image = $data['image'];
+        }
+
+        $village->video_id = $data['video_id'];
+        $village->video_vr = $data['video_vr'];
+        $village->lat = $data['lat'];
+        $village->long = $data['long'];
+
+        if (isset($data['is_published'])) {
+            $village->is_published = $data['is_published'];
+        }
+
+        $village->save();
+
+        return redirect()->route('villages.index')->with('success', 'Update Village has been successfully');
     }
 
     /**

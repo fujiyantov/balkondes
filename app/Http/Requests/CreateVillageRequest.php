@@ -46,11 +46,11 @@ class CreateVillageRequest extends FormRequest
             ],
             'lat' => [
                 'required',
-                'double'
+                'numeric'
             ],
             'long' => [
                 'required',
-                'double'
+                'numeric'
             ],
             'is_published' => [
 

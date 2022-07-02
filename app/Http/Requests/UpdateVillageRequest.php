@@ -33,7 +33,6 @@ class UpdateVillageRequest extends FormRequest
                 'string'
             ],
             'image' => [
-                'required',
                 'image',
                 'max:10240'
             ],
@@ -46,11 +45,11 @@ class UpdateVillageRequest extends FormRequest
             ],
             'lat' => [
                 'required',
-                'double'
+                'numeric'
             ],
             'long' => [
                 'required',
-                'double'
+                'numeric'
             ],
             'is_published' => [
 
