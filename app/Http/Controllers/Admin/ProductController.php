@@ -171,7 +171,7 @@ class ProductController extends Controller
             $product->image = $data['image'];
             $product->address = $data['address'];
             $product->description = $data['description'];
-            $product->addtional_information = $data['addtional_information'];
+            $product->additional_information = $data['additional_information'];
             $product->seller_name = $data['seller_name'];
             $product->is_published = $data['is_published'];
 

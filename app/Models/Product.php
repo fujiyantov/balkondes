@@ -19,7 +19,7 @@ class Product extends Model
         'image',
         'address',
         'description',
-        'addtional_information',
+        'additional_information',
         'seller_name',
         'is_published',
     ];
