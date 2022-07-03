@@ -45,16 +45,20 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('trips.update', $trips->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('trips.update', $trips->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PATCH')
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Village</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
-                                            @foreach($villages as $village)
-                                            @if ($village->id == $trips->village_id) selected @endif>{{ $village->name }}
+                                            @foreach ($villages as $village)
+                                                <option value="{{ $village->id }}"
+                                                    @if ($village->id == $trips->village_id) selected @endif>{{ $village->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('village_id')
@@ -164,7 +168,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Address</label>
                                         <textarea class="form-control @error('address') is-invalid @enderror" cols="30" rows="5" name="address"
-                                            value="{{ old('address') }}" required> </textarea>
+                                            value="{{ old('address') }}" required>{{ $trips->address }}</textarea>
                                         @error('address')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -178,7 +182,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
-                                            name="description" value="{{ old('description') }}" required> </textarea>
+                                            name="description" value="{{ old('description') }}" required>{{ $trips->description }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -193,7 +197,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Additional Information</label>
                                         <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
-                                            name="additional_information" value="{{ old('additional_information') }}" required> </textarea>
+                                            name="additional_information" value="{{ old('additional_information') }}" required>{{ $trips->additional_information }}</textarea>
                                         @error('additional_information')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -207,7 +211,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Seller Name</label>
                                         <input class="form-control @error('seller_name') is-invalid @enderror"
-                                            name="seller_name" type="text" value="{{ old('seller_name') }}"
+                                            name="seller_name" type="text" value="{{ $trips->seller_name }}"
                                             required />
                                         @error('seller_name')
                                             <div class="invalid-feedback">

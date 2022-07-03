@@ -82,7 +82,7 @@ class TripController extends Controller
     public function store(CreateTripRequest $request)
     {
         DB::beginTransaction();
-        try {
+        // try {
 
             $data = $request->only(array_keys($request->rules()));
             
@@ -109,10 +109,10 @@ class TripController extends Controller
 
             DB::commit();
             return redirect()->route('trips.index')->with('success', 'Create Trip has been successfully');
-        } catch (\Exception $e) {
-            DB::rollback();
-            throw log($e);
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        //     throw log($e);
+        // }
     }
 
     /**
@@ -163,23 +163,26 @@ class TripController extends Controller
             if ($request->hasFile('image')) {
                 $data['image'] = $request->file('image')->getClientOriginalName();
                 $request->file('image')->storeAs('assets/trips/images', $data['image']);
+                $trip->image = $data['image'];
             }
 
             $trip->village_id = $data['village_id'];
             $trip->name = $data['name'];
             $trip->price = $data['price'];
             $trip->category = $data['category'];
-            $trip->image = $data['image'];
             $trip->address = $data['address'];
             $trip->description = $data['description'];
             $trip->additional_information = $data['additional_information'];
             $trip->seller_name = $data['seller_name'];
-            $trip->is_published = $data['is_published'];
+
+            if(isset($data['is_published'])){
+                $trip->is_published = $data['is_published'];
+            }
 
             $trip->save();
             if ($request->hasFile('photo')) {
 
-                TripGallery::where('product_id', $trip->id)->delete();
+                TripGallery::where('trip_id', $trip->id)->delete();
 
                 foreach ($request->file('photo') as $photo) {
 
