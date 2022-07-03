@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Tambah Product
+    Edit Trip
 @endsection
 
 @section('container')
@@ -13,13 +13,13 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="shopping-bag"></i></div>
-                                Tambah Product
+                                Edit Trip
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
                             <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Prodcut
+                                Kembali ke Semua Trip
                             </a>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Informasi Product</div>
+                        <div class="card-header">Informasi Trip</div>
                         <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -45,7 +45,7 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('trips.update', $trips->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
@@ -54,7 +54,7 @@
                                         <label class="small mb-1" for="name">Village</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
                                             @foreach($villages as $village)
-                                            <option value="{{ $village->id }}">{{ $village->name }}</option>
+                                            @if ($village->id == $trips->village_id) selected @endif>{{ $village->name }}
                                             @endforeach
                                         </select>
                                         @error('village_id')
@@ -70,7 +70,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Name Prodcut</label>
                                         <input class="form-control @error('name') is-invalid @enderror" name="name"
-                                            type="text" value="{{ old('name') }}" required />
+                                            type="text" value="{{ $trips->name }}" required />
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -84,7 +84,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Price</label>
                                         <input class="form-control @error('price') is-invalid @enderror" name="price"
-                                            type="number" value="{{ old('price') }}" required />
+                                            type="number" value="{{ $trips->price }}" required />
                                         @error('price')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -112,6 +112,13 @@
                                 </div>
 
                                 <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <img src="{{ Storage::url('/assets/trips/images/' . $trips->image) }}"
+                                            class="img-thumbnail" alt="image_village">
+                                    </div>
+                                </div>
+
+                                <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Banner</label>
@@ -122,6 +129,19 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            @foreach ($trips->gallery as $item)
+                                                <div class="col-md-{{ 12 / $trips->gallery->count() }}">
+                                                    <img src="{{ Storage::url('/assets/trips/gallery/' . $item->image) }}"
+                                                        class="img-thumbnail" alt="image_product">
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
 
@@ -144,7 +164,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Address</label>
                                         <textarea class="form-control @error('address') is-invalid @enderror" cols="30" rows="5" name="address"
-                                            value="{{ old('address') }}" required></textarea>
+                                            value="{{ old('address') }}" required> </textarea>
                                         @error('address')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -158,7 +178,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
-                                            name="description" value="{{ old('description') }}" required></textarea>
+                                            name="description" value="{{ old('description') }}" required> </textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -173,7 +193,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Additional Information</label>
                                         <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
-                                            name="additional_information" value="{{ old('additional_information') }}" required></textarea>
+                                            name="additional_information" value="{{ old('additional_information') }}" required> </textarea>
                                         @error('additional_information')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -199,7 +219,7 @@
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
-                                    Add New Product
+                                    Add New Trip
                                 </button>
                             </form>
                         </div>

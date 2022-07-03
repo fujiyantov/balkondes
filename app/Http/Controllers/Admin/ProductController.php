@@ -154,50 +154,52 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         DB::beginTransaction();
-        try {
+        // try {
 
-            $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-            $data = $request->only(array_keys($request->rules()));
-            if ($request->hasFile('image')) {
-                $data['image'] = $request->file('image')->getClientOriginalName();
-                $request->file('image')->storeAs('assets/products/images', $data['image']);
-            }
-
-            $product->village_id = $data['village_id'];
-            $product->name = $data['name'];
-            $product->price = $data['price'];
-            $product->category = $data['category'];
+        $data = $request->only(array_keys($request->rules()));
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('assets/products/images', $data['image']);
             $product->image = $data['image'];
-            $product->address = $data['address'];
-            $product->description = $data['description'];
-            $product->additional_information = $data['additional_information'];
-            $product->seller_name = $data['seller_name'];
-            $product->is_published = $data['is_published'];
-
-            $product->save();
-            if ($request->hasFile('photo')) {
-
-                ProductGallery::where('product_id', $product->id)->delete();
-
-                foreach ($request->file('photo') as $photo) {
-
-                    $photoName = $photo->getClientOriginalName();
-                    $photo->storeAs('assets/products/gallery', $photoName);
-
-                    $gallery = new ProductGallery();
-                    $gallery->product_id = $product->id;
-                    $gallery->image = $photoName;
-                    $gallery->save();
-                }
-            }
-
-            DB::commit();
-            return redirect()->route('products.index')->with('success', 'Update Product has been successfully');
-        } catch (\Exception $e) {
-            DB::rollback();
-            throw log($e);
         }
+
+        $product->village_id = $data['village_id'];
+        $product->name = $data['name'];
+        $product->price = $data['price'];
+        $product->category = $data['category'];
+        $product->address = $data['address'];
+        $product->description = $data['description'];
+        $product->additional_information = $data['additional_information'];
+        $product->seller_name = $data['seller_name'];
+        if (isset($data['is_published'])) {
+            $product->is_published = $data['is_published'];
+        }
+
+        $product->save();
+        if ($request->hasFile('photo')) {
+
+            ProductGallery::where('product_id', $product->id)->delete();
+
+            foreach ($request->file('photo') as $photo) {
+
+                $photoName = $photo->getClientOriginalName();
+                $photo->storeAs('assets/products/gallery', $photoName);
+
+                $gallery = new ProductGallery();
+                $gallery->product_id = $product->id;
+                $gallery->image = $photoName;
+                $gallery->save();
+            }
+        }
+
+        DB::commit();
+        return redirect()->route('products.index')->with('success', 'Update Product has been successfully');
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        //     throw log($e);
+        // }
     }
 
     /**

@@ -53,7 +53,7 @@ class UpdateTripRequest extends FormRequest
             'description' => [
                 'string',
             ],
-            'addtional_information' => [
+            'additional_information' => [
                 'string',
             ],
             'seller_name' => [

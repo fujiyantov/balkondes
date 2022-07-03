@@ -19,7 +19,7 @@
                         <div class="col-12 col-xl-auto mb-3">
                             <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Prodcut
+                                Kembali ke Semua Product
                             </a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('products.update', $products->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 <!-- Form Row-->
@@ -116,7 +116,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
-                                        <img src="{{ Storage::url('/assets/products/images/' . $products->image) }}" class="img-thumbnail" alt="image_village">
+                                        <img src="{{ Storage::url('/assets/products/images/' . $products->image) }}"
+                                            class="img-thumbnail" alt="image_village">
                                     </div>
                                 </div>
 
@@ -131,6 +132,19 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            @foreach ($products->gallery as $item)
+                                                <div class="col-md-{{ 12 / $products->gallery->count() }}">
+                                                    <img src="{{ Storage::url('/assets/products/gallery/' . $item->image) }}"
+                                                        class="img-thumbnail" alt="image_product">
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
 
@@ -167,7 +181,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
-                                            name="description" value="{{ old('description') }}" required>{{ $products->description }} </textarea>
+                                            name="description" value="{{ old('description') }}" required>{{ $products->description }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -182,7 +196,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Additional Information</label>
                                         <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
-                                            name="additional_information" value="{{ old('additional_information') }}" required> {{ $products->additional_information }} </textarea>
+                                            name="additional_information" value="{{ old('additional_information') }}" required> {{ $products->additional_information }}</textarea>
                                         @error('additional_information')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

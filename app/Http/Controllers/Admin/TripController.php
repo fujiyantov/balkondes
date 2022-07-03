@@ -139,7 +139,7 @@ class TripController extends Controller
     {
         $trips = Trip::findOrFail($id);
         $villages = Village::all();
-        return view('pages.admin.product.edit', [
+        return view('pages.admin.trip.edit', [
             'villages' => $villages,
             'trips' => $trips,
         ]);
@@ -172,7 +172,7 @@ class TripController extends Controller
             $trip->image = $data['image'];
             $trip->address = $data['address'];
             $trip->description = $data['description'];
-            $trip->addtional_information = $data['addtional_information'];
+            $trip->additional_information = $data['additional_information'];
             $trip->seller_name = $data['seller_name'];
             $trip->is_published = $data['is_published'];
 

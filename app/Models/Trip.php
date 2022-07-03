@@ -17,7 +17,7 @@ class Trip extends Model
         'image',
         'address',
         'description',
-        'addtional_information',
+        'additional_information',
         'seller_name',
         'is_published',
     ];
@@ -25,5 +25,10 @@ class Trip extends Model
     public function village()
     {
         return $this->belongsTo(Village::class);
+    }
+
+    public function gallery()
+    {
+        return $this->hasMany(TripGallery::class, 'trip_id');
     }
 }

@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'image' => $this->faker->imageUrl(),
             'address' => $this->faker->address(),
             'description' => $this->faker->text(),
-            'addtional_information' => $this->faker->text(),
+            'additional_information' => $this->faker->text(),
             'seller_name' => $this->faker->name(),
             'is_published' => $this->faker->numberBetween(0,1),
         ];
