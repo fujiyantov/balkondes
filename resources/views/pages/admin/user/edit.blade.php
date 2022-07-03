@@ -48,6 +48,20 @@
                                 @csrf
                                 @method('PUT')
                                 <!-- Form Row-->
+                                <div class="mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="name">Role</label>
+                                        <select class="form-select" name="role_id" aria-label="Default select example">
+                                            <option value="2" @if($item->roles->first()->id == 2) selected @endif>Admin</option>
+                                            <option value="3" @if($item->roles->first()->id == 3) selected @endif>User</option>
+                                        </select>
+                                        @error('role_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">

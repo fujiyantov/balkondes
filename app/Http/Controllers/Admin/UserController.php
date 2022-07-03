@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
-use Yajra\DataTables\Facades\DataTables;
 
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
                         <a class="btn btn-primary btn-xs" href="' . route('user.edit', $item->id) . '">
                             <i class="fas fa-edit"></i> &nbsp; Ubah
                         </a>
-                        <form action="' . route('user.destroy', $item->id) . '" method="POST" onsubmit="return confirm('."'Anda akan menghapus item ini secara permanen dari situs anda?'".')">
+                        <form action="' . route('user.destroy', $item->id) . '" method="POST" onsubmit="return confirm(' . "'Anda akan menghapus item ini secara permanen dari situs anda?'" . ')">
                             ' . method_field('delete') . csrf_field() . '
                             <button class="btn btn-danger btn-xs">
                                 <i class="far fa-trash-alt"></i> &nbsp; Hapus
@@ -34,20 +35,19 @@ class UserController extends Controller
                     ';
                 })
                 ->editColumn('name', function ($item) {
-                    return $item->profile ? 
-                                '<div class="d-flex align-items-center">
-                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="'. Storage::url($item->profile) .'" /></div>'.
-                                    $item->name .'
-                                </div>' 
-                            : 
-                                '<div class="d-flex align-items-center">
-                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="https://ui-avatars.com/api/?name='.$item->name.'" /></div>'.
-                                    $item->name .'
+                    return $item->profile ?
+                        '<div class="d-flex align-items-center">
+                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="' . Storage::url($item->profile) . '" /></div>' .
+                        $item->name . '
+                                </div>'
+                        : '<div class="d-flex align-items-center">
+                                    <div class="avatar me-2"><img class="avatar-img img-fluid" src="https://ui-avatars.com/api/?name=' . $item->name . '" /></div>' .
+                        $item->name . '
                                 </div>';
                 })
                 ->addIndexColumn()
                 ->removeColumn('id')
-                ->rawColumns(['action','name'])
+                ->rawColumns(['action', 'name'])
                 ->make();
         }
         return view('pages.admin.user.index');
@@ -64,15 +64,21 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:5|max:255',
+            'role_id' => 'required|numeric|min:2|max:3',
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        User::create($validatedData);
+        DB::beginTransaction();
+
+        $user = User::create($validatedData);
+        $user->attachRole($request->input('role_id'));
+
+        DB::commit();
 
         return redirect()
-                    ->route('user.index')
-                    ->with('success', 'Sukses! Data Pengguna Berhasil Disimpan');
+            ->route('user.index')
+            ->with('success', 'Sukses! Data Pengguna Berhasil Disimpan');
     }
 
     /**
@@ -85,7 +91,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('pages.admin.user.index',[
+        return view('pages.admin.user.index', [
             'user' => $user
         ]);
     }
@@ -94,7 +100,7 @@ class UserController extends Controller
     {
         $item = User::findOrFail($id);
 
-        return view('pages.admin.user.edit',[
+        return view('pages.admin.user.edit', [
             'item' => $item
         ]);
     }
@@ -104,15 +110,17 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email:dns',
+            'role_id' => 'required|numeric|min:2|max:3',
         ]);
 
         $item = User::findOrFail($id);
-        
+
         $item->update($validatedData);
+        $item->attachRole($request->input('role_id'));
 
         return redirect()
-                ->route('user.index')
-                ->with('success', 'Sukses! Data Pengguna telah diperbarui');
+            ->route('user.index')
+            ->with('success', 'Sukses! Data Pengguna telah diperbarui');
     }
 
     public function destroy($id)
@@ -124,8 +132,8 @@ class UserController extends Controller
         $item->delete();
 
         return redirect()
-                ->route('user.index')
-                ->with('success', 'Sukses! Data Pengguna telah dihapus');
+            ->route('user.index')
+            ->with('success', 'Sukses! Data Pengguna telah dihapus');
     }
 
     public function upload_profile(Request $request)
@@ -139,7 +147,7 @@ class UserController extends Controller
 
         //dd($item);
 
-        if($request->file('profile')){
+        if ($request->file('profile')) {
             Storage::delete($item->profile);
             $item->profile = $request->file('profile')->store('assets/profile-images');
         }
@@ -147,14 +155,12 @@ class UserController extends Controller
         $item->save();
 
         return redirect()
-                ->route('user.index')
-                ->with('success', 'Sukses! Photo Pengguna telah diperbarui');
+            ->route('user.index')
+            ->with('success', 'Sukses! Photo Pengguna telah diperbarui');
     }
 
     public function change_password()
     {
         return view('pages.admin.user.change-password');
     }
-
-    
 }

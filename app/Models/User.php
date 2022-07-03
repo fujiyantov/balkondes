@@ -14,6 +14,10 @@ class User extends Authenticatable
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const ROLE_ADMIN = 2;
+    public const ROLE_USER = 3;
+    public const ROLE_MEMBER = 4;
+
     /**
      * The attributes that are mass assignable.
      *
