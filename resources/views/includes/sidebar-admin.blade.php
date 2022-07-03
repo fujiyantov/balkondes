@@ -43,12 +43,17 @@
             </a>
             <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                 href="{{ route('user.index') }}">
-                <div class="nav-link-icon"><i data-feather="user"></i></div>
+                <div class="nav-link-icon"><i data-feather="users"></i></div>
                 Data User
             </a>
+            <div class="sidenav-menu-heading">MANAGEMENT</div>
             <a class="nav-link {{ request()->is('admin/setting*') ? 'active' : '' }}"
                 href="{{ route('setting.index') }}">
-                <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                <div class="nav-link-icon"><i data-feather="user"></i></div>
+                Account
+            </a>
+            <a class="nav-link" target="_blank" href="/admin/management">
+                <div class="nav-link-icon"><i data-feather="sliders"></i></div>
                 Settings
             </a>
         </div>

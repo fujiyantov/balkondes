@@ -2,14 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
-use App\Models\ProductGallery;
-use App\Models\ProductTestimonial;
 use App\Models\Trip;
-use App\Models\TripGallery;
-use App\Models\TripTestimonial;
+use App\Models\User;
+use App\Models\Product;
 use App\Models\Village;
+use App\Models\TripGallery;
+use App\Models\ProductGallery;
+use App\Models\TripTestimonial;
 use Illuminate\Database\Seeder;
+use App\Models\ProductTestimonial;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(1)->create();
+        // User::factory(1)->create();
         Village::factory(6)->create();
         Product::factory(20)->create();
         Trip::factory(20)->create();
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
         TripTestimonial::factory(100)->create();
         ProductGallery::factory(50)->create();
         TripGallery::factory(50)->create();
+        $this->call(LaratrustSeeder::class);
     }
 }
