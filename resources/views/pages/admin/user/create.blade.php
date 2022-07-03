@@ -47,6 +47,20 @@
                             <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <!-- Form Row-->
+                                <div class="mb-3">
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="name">Role</label>
+                                        <select class="form-select" name="role_id" aria-label="Default select example">
+                                            <option value="2">Admin</option>
+                                            <option value="3">User</option>
+                                        </select>
+                                        @error('role_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
