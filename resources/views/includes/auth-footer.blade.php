@@ -1,12 +1,11 @@
 <footer class="footer-admin mt-auto footer-dark">
-    <div class="container-xl px-4">
-        <div class="row">
-            {{-- <div class="col-md-6 small">Copyright &copy; AlFatih Developer {{ date('Y') }}</div>
-            <div class="col-md-6 text-md-end small">
-                <a href="#!">Privacy Policy</a>
-                &middot;
-                <a href="#!">Terms &amp; Conditions</a>
-            </div> --}}
-        </div>
+    <div class="ilustrasi-orang-foot d-none d-lg-block">
+        <img src="https://kbkm.kebudayaan.id/public/homepage/images/graph-right.png" alt="Graphic Assets">
+    </div>
+    <div class="ilustrasi-wanita d-none d-lg-block">
+        <img src="https://kbkm.kebudayaan.id/public/homepage/images/graph-layer.png" alt="Graphic Assets">
+    </div>
+    <div class="foot-grap">
+        <img src="https://ik.imagekit.io/oct5c8myq/Group_67_cGShNTcyNCL.png" alt="Graphic Assets" style="max-width: 100%">
     </div>
 </footer>

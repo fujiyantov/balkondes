@@ -110,13 +110,15 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email:dns',
-            'role_id' => 'required|numeric|min:2|max:3',
+            // 'role_id' => 'required|numeric|min:2|max:3',
         ]);
 
         $item = User::findOrFail($id);
 
         $item->update($validatedData);
-        $item->attachRole($request->input('role_id'));
+        if (isset($request->role_id)) {
+            $item->attachRole($request->input('role_id'));
+        }
 
         return redirect()
             ->route('user.index')
