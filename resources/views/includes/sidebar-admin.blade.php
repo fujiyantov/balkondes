@@ -18,29 +18,39 @@
                 Transaction
                 <span class="badge bg-warning-soft text-warning ms-auto">2 New!</span>
             </a>
-            <!-- Sidenav Menu Heading (Core)-->
-            <div class="sidenav-menu-heading">Menu</div>
-            <!-- Sidenav Link (Dashboard)-->
-            <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}"
-                href="{{ route('admin-dashboard') }}">
-                <div class="nav-link-icon"><i data-feather="home"></i></div>
-                Dashboard
-            </a>
-            <a class="nav-link {{ request()->is('admin/village*') ? 'active' : '' }}"
-                href="{{ route('villages.index') }}">
-                <div class="nav-link-icon"><i data-feather="folder"></i></div>
-                Villages
-            </a>
-            <a class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}"
-                href="{{ route('products.index') }}">
-                <div class="nav-link-icon"><i data-feather="shopping-bag"></i></div>
-                Products
-            </a>
-            <a class="nav-link {{ request()->is('admin/trips*') ? 'active' : '' }}"
-                href="{{ route('trips.index') }}">
-                <div class="nav-link-icon"><i data-feather="package"></i></div>
-                Trips
-            </a>
+
+            @if (Auth::User()->roles->first()->id == 1 || Auth::User()->roles->first()->id == 2 || Auth::User()->roles->first()->id == 3)
+                <!-- Sidenav Menu Heading (Core)-->
+                <div class="sidenav-menu-heading">Menu</div>
+
+                <!-- Sidenav Link (Dashboard)-->
+                <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}"
+                    href="{{ route('admin-dashboard') }}">
+                    <div class="nav-link-icon"><i data-feather="home"></i></div>
+                    Dashboard
+                </a>
+
+
+                <a class="nav-link {{ request()->is('admin/village*') ? 'active' : '' }}"
+                    href="{{ route('villages.index') }}">
+                    <div class="nav-link-icon"><i data-feather="folder"></i></div>
+                    Villages
+                </a>
+
+                @if (Auth::User()->roles->first()->id != 3)
+                    <a class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}"
+                        href="{{ route('products.index') }}">
+                        <div class="nav-link-icon"><i data-feather="shopping-bag"></i></div>
+                        Products
+                    </a>
+                    <a class="nav-link {{ request()->is('admin/trips*') ? 'active' : '' }}"
+                        href="{{ route('trips.index') }}">
+                        <div class="nav-link-icon"><i data-feather="package"></i></div>
+                        Trips
+                    </a>
+                @endif
+            @endif
+
             @if (Auth::User()->roles->first()->id == 1)
                 <div class="sidenav-menu-heading">MANAGEMENT</div>
                 <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}"
