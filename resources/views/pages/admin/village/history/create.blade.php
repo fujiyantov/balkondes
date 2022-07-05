@@ -45,7 +45,8 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('culture-histories.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('culture-histories.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <!-- Form Row-->
@@ -54,8 +55,8 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Village</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
-                                            @foreach($villages as $village)
-                                            <option value="{{ $village->id }}">{{ $village->name }}</option>
+                                            @foreach ($villages as $village)
+                                                <option value="{{ $village->id }}">{{ $village->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('village_id')
@@ -65,7 +66,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
@@ -112,9 +113,8 @@
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video ID</label>
-                                        <input class="form-control @error('video_id') is-invalid @enderror"
-                                            name="video_id" type="text" value="{{ old('video_id') }}"
-                                            required />
+                                        <input class="form-control @error('video_id') is-invalid @enderror" name="video_id"
+                                            type="text" value="{{ old('video_id') }}" required />
                                         @error('video_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -127,9 +127,8 @@
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video VR</label>
-                                        <input class="form-control @error('video_vr') is-invalid @enderror"
-                                            name="video_vr" type="text" value="{{ old('video_vr') }}"
-                                            required />
+                                        <input class="form-control @error('video_vr') is-invalid @enderror" name="video_vr"
+                                            type="text" value="{{ old('video_vr') }}" required />
                                         @error('video_vr')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -143,8 +142,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video ETC</label>
                                         <input class="form-control @error('video_etc') is-invalid @enderror"
-                                            name="video_etc" type="text" value="{{ old('video_etc') }}"
-                                            required />
+                                            name="video_etc" type="text" value="{{ old('video_etc') }}" required />
                                         @error('video_etc')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -160,6 +158,7 @@
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

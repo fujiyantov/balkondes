@@ -21,6 +21,7 @@
                 height: 3em!important;
             }
         </style>
+        @yield('stylesheet')
     </head>
     <body class="nav-fixed">
         @include('includes.navbar-admin')
@@ -41,5 +42,6 @@
             <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
             <script src="{{ url('/admin/js/litepicker.js') }}"></script>
         @stack('addon-script')
+        @yield('script')
     </body>
 </html>
