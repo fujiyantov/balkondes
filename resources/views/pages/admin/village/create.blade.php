@@ -81,7 +81,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Description</label>
                                         <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
-                                            name="description" value="{{ old('description') }}" required> </textarea>
+                                            name="description" value="{{ old('description') }}" required></textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -113,6 +113,21 @@
                                             name="video_vr" type="text" value="{{ old('video_vr') }}"
                                             required />
                                         @error('video_vr')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="name">Video ETC</label>
+                                        <input class="form-control @error('video_etc') is-invalid @enderror"
+                                            name="video_etc" type="text" value="{{ old('video_etc') }}"
+                                            required />
+                                        @error('video_etc')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

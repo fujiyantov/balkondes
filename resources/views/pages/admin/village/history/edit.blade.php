@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Edit Desa
+    Edit Culture History
 @endsection
 
 @section('container')
@@ -13,13 +13,13 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="folder"></i></div>
-                                Edit Desa
+                                Edit Culture History
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
                             <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Desa
+                                Kembali ke Semua Culture History
                             </a>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Informasi Desa</div>
+                        <div class="card-header">Informasi Culture History</div>
                         <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -45,10 +45,30 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('villages.update', $villages->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('culture-histories.update', $villages->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="name">Village</label>
+                                        <select class="form-select" name="village_id" aria-label="Default select example">
+                                            @foreach ($collections as $collection)
+                                                <option value="{{ $collection->id }}"
+                                                    @if ($collection->id == $villages->village_id) selected @endif>{{ $villages->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('village_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
@@ -141,39 +161,9 @@
                                     </div>
                                 </div>
 
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Latitude</label>
-                                        <input class="form-control @error('lat') is-invalid @enderror"
-                                            name="lat" type="text" value="{{ $villages->lat }}"
-                                            required />
-                                        @error('lat')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Longitude</label>
-                                        <input class="form-control @error('long') is-invalid @enderror"
-                                            name="long" type="text" value="{{ $villages->long }}"
-                                            required />
-                                        @error('long')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
-                                    Update Desa
+                                    Update Culture History
                                 </button>
                             </form>
                         </div>

@@ -5,23 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Village extends Model
+class VillageHistory extends Model
 {
     use HasFactory;
 
-    protected $cast = [
-        'is_published' => 'boolean'
-    ];
-
     protected $fillable = [
+        'village_id',
         'name',
         'description',
         'image',
         'video_id',
         'video_vr',
         'video_etc',
-        'lat',
-        'long',
-        'is_published',
     ];
 }

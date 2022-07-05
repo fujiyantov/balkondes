@@ -44,6 +44,9 @@ class CreateVillageRequest extends FormRequest
             'video_vr' => [
                 'string',
             ],
+            'video_etc' => [
+                'string',
+            ],
             'lat' => [
                 'required',
                 'numeric'
@@ -51,9 +54,6 @@ class CreateVillageRequest extends FormRequest
             'long' => [
                 'required',
                 'numeric'
-            ],
-            'is_published' => [
-
             ],
         ];
     }

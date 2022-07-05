@@ -11,6 +11,7 @@ use App\Models\ProductGallery;
 use App\Models\TripTestimonial;
 use Illuminate\Database\Seeder;
 use App\Models\ProductTestimonial;
+use App\Models\VillageHistory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         TripTestimonial::factory(100)->create();
         ProductGallery::factory(50)->create();
         TripGallery::factory(50)->create();
+        VillageHistory::factory(60)->create();
         $this->call(LaratrustSeeder::class);
     }
 }

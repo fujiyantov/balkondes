@@ -37,6 +37,12 @@
                     Villages
                 </a>
 
+                <a class="nav-link {{ request()->is('admin/culture-histories*') ? 'active' : '' }}"
+                    href="{{ route('culture-histories.index') }}">
+                    <div class="nav-link-icon"><i data-feather="clock"></i></div>
+                    Culture History
+                </a>
+
                 @if (Auth::User()->roles->first()->id != 3)
                     <a class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}"
                         href="{{ route('products.index') }}">
@@ -45,8 +51,8 @@
                     </a>
                     <a class="nav-link {{ request()->is('admin/trips*') ? 'active' : '' }}"
                         href="{{ route('trips.index') }}">
-                        <div class="nav-link-icon"><i data-feather="package"></i></div>
-                        Trips
+                        <div class="nav-link-icon"><i data-feather="navigation"></i></div>
+                        Travel
                     </a>
                 @endif
             @endif

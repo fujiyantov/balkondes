@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateVillageRequest extends FormRequest
+class CreateVillageHistoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,10 @@ class UpdateVillageRequest extends FormRequest
     public function rules()
     {
         return [
+            'village_id' => [
+                'required',
+                'numeric',
+            ],
             'name' => [
                 'required',
                 'string',
@@ -33,6 +37,7 @@ class UpdateVillageRequest extends FormRequest
                 'string'
             ],
             'image' => [
+                'required',
                 'image',
                 'max:10240'
             ],
@@ -45,17 +50,6 @@ class UpdateVillageRequest extends FormRequest
             ],
             'video_etc' => [
                 'string',
-            ],
-            'lat' => [
-                'required',
-                'numeric'
-            ],
-            'long' => [
-                'required',
-                'numeric'
-            ],
-            'is_published' => [
-
             ],
         ];
     }
