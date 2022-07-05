@@ -41,8 +41,15 @@
                                         <p class="text-gray-700 mb-0">Di Admin Panel Balkondes Borobudur</p>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
-                                        src="/admin/assets/img/illustrations/at-work.svg" style="max-width: 26rem" /></div>
+                                <div class="col-xl-4 col-xxl-12 text-center">
+                                    {{-- <img class="img-fluid" src="/admin/assets/img/illustrations/at-work.svg" style="max-width: 26rem" /> --}}
+                                    @if (Auth::user()->profile != null)
+                                        <img class="img-fluid img-account-profile rounded-circle" style="max-width: 26rem" src="{{ Storage::url(Auth::user()->profile) }}" />
+                                    @else
+                                        <img class="img-fluid img-account-profile rounded-circle" style="max-width: 26rem"
+                                            src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" />
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +121,7 @@
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between small">
                                 <a class="text-white stretched-link"
-                                    href="{{ route('village-histories.index') }}">Selengkapnya</a>
+                                    href="{{ route('culture-histories.index') }}">Selengkapnya</a>
                                 <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
