@@ -21,6 +21,10 @@ use App\Http\Controllers\Admin\VillageHistoryController;
 |
 */
 
+if (env('APP_ENV') === 'production') {
+    URL::forceScheme('https');
+}
+
 /* Route::get('/', function () {
     return view('index');
 });
