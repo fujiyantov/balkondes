@@ -167,7 +167,7 @@ class ApiController extends Controller
                     "type" => "video",
                     "level" => 2,
                     "json" => "11_escaping_places.json",
-                    "parent" => "culture",
+                    // "parent" => "culture",
                     "url" => "/",
                     "content" => [
                         "name" => $val->name,
