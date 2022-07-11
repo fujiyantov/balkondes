@@ -168,7 +168,7 @@ class ApiController extends Controller
                     "level" => 2,
                     "json" => "11_escaping_places.json",
                     "parent" => "culture",
-                    "url" => "culture/escaping-places",
+                    "url" => "/",
                     "content" => [
                         "name" => $val->name,
                         "number" => $i.'.'.$j++,
