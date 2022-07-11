@@ -24,4 +24,8 @@ class Village extends Model
         'long',
         'is_published',
     ];
+
+    public function culture() {
+        return $this->hasMany(VillageHistory::class, 'village_id');
+    }
 }

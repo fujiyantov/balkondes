@@ -12,11 +12,11 @@
                             <div class="row align-items-baseline">
                                 <div class="col-6">
                                     <img src="{{ asset('/assets/icons/logo-kementrian.svg') }}" class="img img-fluid"
-                                        alt="" width="180">
+                                        alt="">
                                 </div>
                                 <div class="col-6">
                                     <img src="{{ asset('/assets/icons/logo-kbkm-blue.png') }}" class="img img-fluid"
-                                        alt="" width="180">
+                                        alt="">
                                 </div>
                             </div>
 
