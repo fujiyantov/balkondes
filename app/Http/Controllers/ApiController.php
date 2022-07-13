@@ -165,43 +165,78 @@ class ApiController extends Controller
                     $imageLinkCulture = $val->image;
                 }
 
+                // $culture = [
+                //     /* "next" => "escaping-places-video",
+                //     "prev" => "culture", */
+                //     "type" => "video",
+                //     "level" => 2,
+                //     "json" => "11_escaping_places.json",
+                //     // "parent" => "culture",
+                //     "url" => "/",
+                //     "content" => [
+                //         "name" => $val->name,
+                //         "number" => $i.'.'.$j++,
+                //         "icons" => [
+                //             "vrvideo"
+                //         ],
+                //         "image" => $imageLinkCulture,
+                //         "description" => $val->description,
+                //         "videoId" => $val->video_id,
+                //         "no-auto-next-button" => 0,
+                //         "powered-by-earch" => 0,
+                //         "mapCoord" => [
+                //             "lat" => $val->lat,
+                //             "lng" => $val->long
+                //         ],
+                //         "mapIcon" => "escaping_places.svg",
+                //         /* "titlecard" => [
+                //             "narrators" => [
+                //                 [
+                //                     "name" => "Willie",
+                //                     "image" => "willie_grayeyes.jpg"
+                //                 ],
+                //                 [
+                //                     "name" => "Jason",
+                //                     "image" => "jason_nez.jpg"
+                //                 ]
+                //             ]
+                //         ], */
+                //         "showNextCard" => 1
+                //     ]
+                // ];
+
                 $culture = [
-                    /* "next" => "escaping-places-video",
-                    "prev" => "culture", */
+                    // "next" => "escaping-places-video",
+                    // "prev" => "culture",
                     "type" => "video",
                     "level" => 2,
                     "json" => "11_escaping_places.json",
-                    // "parent" => "culture",
-                    "url" => "/",
+                    "parent" => "culture",
+                    "url" => "culture/escaping-places",
                     "content" => [
                         "name" => $val->name,
                         "number" => $i.'.'.$j++,
-                        "icons" => [
-                            "vrvideo"
-                        ],
+                        "icons" => ["vrvideo"],
                         "image" => $imageLinkCulture,
-                        "description" => $val->description,
-                        "videoId" => $val->video_id,
-                        "no-auto-next-button" => 0,
-                        "powered-by-earch" => 0,
+                        "description" => "Learn how Bears Ears has long served as a refuge from conflict.",
+                        "videoId" => $val->vode_id,
+                        "no-auto-next-button" => !0,
+                        "powered-by-earch" => !0,
                         "mapCoord" => [
                             "lat" => $val->lat,
                             "lng" => $val->long
-                        ],
+                    ],
                         "mapIcon" => "escaping_places.svg",
-                        /* "titlecard" => [
-                            "narrators" => [
-                                [
-                                    "name" => "Willie",
-                                    "image" => "willie_grayeyes.jpg"
-                                ],
-                                [
-                                    "name" => "Jason",
-                                    "image" => "jason_nez.jpg"
-                                ]
-                            ]
-                        ], */
-                        "showNextCard" => 1
+                        "titlecard" => [
+                            "narrators" => [[
+                                "name" => "Willie",
+                                "image" => "willie_grayeyes.jpg"
+                            ], [
+                                "name" => "Jason",
+                                "image" => "jason_nez.jpg"
+                            ]]
+                        ],
+                        "showNextCard" => !1
                     ]
                 ];
 
