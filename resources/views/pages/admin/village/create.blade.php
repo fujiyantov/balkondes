@@ -258,9 +258,9 @@
 
 @section('script')
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-v8gfAKwMuaBRN1QQ0wssH05SlaN0qpA&v=3.exp&libraries=places">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&v=3.exp&libraries=places">
     </script>
-    {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-v8gfAKwMuaBRN1QQ0wssH05SlaN0qpA&callback=initMap"></script> --}}
+    {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&callback=initMap"></script> --}}
     <script>
         var geocoder;
         var map;

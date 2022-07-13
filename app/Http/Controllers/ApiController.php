@@ -146,6 +146,10 @@ class ApiController extends Controller
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "showNextCard" => 1,
+                    "mapCoord" => [
+                        "lat" => $item->lat,
+                        "lng" => $item->long
+                    ],
                     "mapIcon" => "escaping_places.svg",
                     // "video-show-skip" => 0,
                 ],
