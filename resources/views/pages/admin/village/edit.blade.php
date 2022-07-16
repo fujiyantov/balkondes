@@ -119,7 +119,8 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('villages.update', $villages->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('villages.update', $villages->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
 
@@ -159,7 +160,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
@@ -176,7 +177,12 @@
 
                                 <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
-                                        <img src="{{ Storage::url('/assets/villages/images/' . $villages->image) }}" class="img-thumbnail" alt="image_village">
+                                        @if (substr($villages->image, 0, 5) == 'https')
+                                            <img src="{{ $villages->image }}" class="img-thumbnail" alt="image_village">
+                                        @else
+                                            <img src="{{ Storage::url('/assets/villages/images/' . $villages->image) }}"
+                                                class="img-thumbnail" alt="image_village">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row gx-3 mb-3">
@@ -211,9 +217,8 @@
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video ID</label>
-                                        <input class="form-control @error('video_id') is-invalid @enderror"
-                                            name="video_id" type="text" value="{{ $villages->video_id }}"
-                                            required />
+                                        <input class="form-control @error('video_id') is-invalid @enderror" name="video_id"
+                                            type="text" value="{{ $villages->video_id }}" required />
                                         @error('video_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -252,36 +257,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Latitude</label>
-                                        <input class="form-control @error('lat') is-invalid @enderror"
-                                            name="lat" type="text" value="{{ $villages->lat }}"
-                                            required />
-                                        @error('lat')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Longitude</label>
-                                        <input class="form-control @error('long') is-invalid @enderror"
-                                            name="long" type="text" value="{{ $villages->long }}"
-                                            required />
-                                        @error('long')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div> --}}
-
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
                                     Update Desa
@@ -299,7 +274,7 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&v=3.exp&libraries=places">
     </script>
-    
+
     <script>
         var geocoder;
         var map;
@@ -311,7 +286,7 @@
 
             var markers = [];
             var mapOptions = {
-                zoom: 7,
+                zoom: 12,
                 center: new google.maps.LatLng({{ $villages->lat }}, {{ $villages->long }}),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControl: false,
@@ -373,6 +348,98 @@
                 var bounds = map.getBounds();
                 searchBox.setBounds(bounds);
             });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+@endsection
+
+@section('script')
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&v=3.exp&libraries=places">
+    </script>
+    <script>
+        var geocoder;
+        var map;
+        var infowindow = new google.maps.InfoWindow();
+        var marker;
+        var g_err = 0;
+
+        function initialize() {
+
+            var markers = [];
+            var mapOptions = {
+                zoom: 12,
+                center: new google.maps.LatLng(-6.968667, 110.1234954),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                streetViewControl: false
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            // Create the search box and link it to the UI element.  
+            var input = document.getElementById('pac-input');
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            var searchBox = new google.maps.places.SearchBox(input);
+
+            // [START region_getplaces]  
+            // Listen for the event fired when the user selects an item from the  
+            // pick list. Retrieve the matching places for that item.  
+            google.maps.event.addListener(searchBox, 'places_changed', function() {
+                var places = searchBox.getPlaces();
+                if (places.length == 0) {
+                    return;
+                }
+                for (var i = 0, marker; marker = markers[i]; i++) {
+                    marker.setMap(null);
+                }
+
+                // For each place, get the icon, place name, and location.  
+                markers = [];
+                var bounds = new google.maps.LatLngBounds();
+                for (var i = 0, place; place = places[i]; i++) {
+                    var image = {
+                        url: place.icon,
+                        size: new google.maps.Size(75, 75),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.  
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        icon: image,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+                    $('.lat').val(marker.position.lat());
+                    $('.lon').val(marker.position.lng());
+                    // alert('Lat :' + marker.position.lat() + ' Lon :' + marker.position.lng());
+                    markers.push(marker);
+                    bounds.extend(place.geometry.location);
+                }
+
+                map.fitBounds(bounds);
+            });
+            // [END region_getplaces]  
+
+            // Bias the SearchBox results towards places that are within the bounds of the  
+            // current map's viewport.  
+            google.maps.event.addListener(map, 'bounds_changed', function() {
+                var bounds = map.getBounds();
+                searchBox.setBounds(bounds);
+            });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initialLocation);
+                    $('.lat').val(position.coords.latitude);
+                    $('.lon').val(position.coords.longitude);
+                });
+            }
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);

@@ -24,6 +24,9 @@ class CreateTripsTable extends Migration
             $table->text('description');
             $table->text('additional_information')->nullable();
             $table->string('seller_name');
+            $table->double('lat')->nullable();
+            $table->double('long')->nullable();
+            $table->string('video_id')->nullable();
             $table->unsignedBigInteger('is_published')->default(1);
             $table->timestamps();
             $table->softDeletes();

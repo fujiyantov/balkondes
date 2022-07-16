@@ -84,31 +84,31 @@ class TripController extends Controller
         DB::beginTransaction();
         // try {
 
-            $data = $request->only(array_keys($request->rules()));
-            
-            if ($request->hasFile('image')) {
-                
-                $data['image'] = $request->file('image')->getClientOriginalName();
-                $request->file('image')->storeAs('assets/trips/images', $data['image']);
+        $data = $request->only(array_keys($request->rules()));
+
+        if ($request->hasFile('image')) {
+
+            $data['image'] = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('assets/trips/images', $data['image']);
+        }
+
+        $trip = Trip::create($data);
+        if ($request->hasFile('photo')) {
+
+            foreach ($request->file('photo') as $photo) {
+
+                $photoName = $photo->getClientOriginalName();
+                $photo->storeAs('assets/trips/gallery', $photoName);
+
+                $gallery = new TripGallery();
+                $gallery->trip_id = $trip->id;
+                $gallery->image = $photoName;
+                $gallery->save();
             }
+        }
 
-            $trip = Trip::create($data);
-            if ($request->hasFile('photo')) {
-
-                foreach ($request->file('photo') as $photo) {
-
-                    $photoName = $photo->getClientOriginalName();
-                    $photo->storeAs('assets/trips/gallery', $photoName);
-
-                    $gallery = new TripGallery();
-                    $gallery->trip_id = $trip->id;
-                    $gallery->image = $photoName;
-                    $gallery->save();
-                }
-            }
-
-            DB::commit();
-            return redirect()->route('trips.index')->with('success', 'Create Trip has been successfully');
+        DB::commit();
+        return redirect()->route('trips.index')->with('success', 'Create Trip has been successfully');
         // } catch (\Exception $e) {
         //     DB::rollback();
         //     throw log($e);
@@ -174,8 +174,11 @@ class TripController extends Controller
             $trip->description = $data['description'];
             $trip->additional_information = $data['additional_information'];
             $trip->seller_name = $data['seller_name'];
+            $trip->video_id = $data['video_id'];
+            $trip->lat = $data['lat'];
+            $trip->long = $data['long'];
 
-            if(isset($data['is_published'])){
+            if (isset($data['is_published'])) {
                 $trip->is_published = $data['is_published'];
             }
 

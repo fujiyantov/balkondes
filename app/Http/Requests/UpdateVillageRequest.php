@@ -57,6 +57,14 @@ class UpdateVillageRequest extends FormRequest
             'is_published' => [
 
             ],
+            'lat' => [
+                'required',
+                'numeric'
+            ],
+            'long' => [
+                'required',
+                'numeric'
+            ],
         ];
     }
 }

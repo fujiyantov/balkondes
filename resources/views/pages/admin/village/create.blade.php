@@ -260,7 +260,6 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&v=3.exp&libraries=places">
     </script>
-    {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&callback=initMap"></script> --}}
     <script>
         var geocoder;
         var map;
@@ -272,7 +271,7 @@
 
             var markers = [];
             var mapOptions = {
-                zoom: 7,
+                zoom: 12,
                 center: new google.maps.LatLng(-6.968667, 110.1234954),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControl: false,
@@ -334,6 +333,15 @@
                 var bounds = map.getBounds();
                 searchBox.setBounds(bounds);
             });
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    map.setCenter(initialLocation);
+                    $('.lat').val(position.coords.latitude);
+                    $('.lon').val(position.coords.longitude);
+                });
+            }
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);

@@ -21,6 +21,8 @@ class VillageHistoryFactory extends Factory
             'video_id' => 'Lv_GojoT1v4',
             'video_vr' => 'hNAbQYU0wpg', // video 360
             'video_etc' => 'hNAbQYU0wpg', // 
+            'lat' => $this->faker->latitude(),
+            'long' => $this->faker->longitude(),
         ];
     }
 }

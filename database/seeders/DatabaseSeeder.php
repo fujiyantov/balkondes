@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         TripTestimonial::factory(100)->create();
         ProductGallery::factory(50)->create();
         TripGallery::factory(50)->create();
-        VillageHistory::factory(60)->create();
+        VillageHistory::factory(20)->create();
         $this->call(LaratrustSeeder::class);
     }
 }

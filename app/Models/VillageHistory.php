@@ -14,8 +14,10 @@ class VillageHistory extends Model
         'name',
         'description',
         'image',
-        'video_id',
         'video_vr',
         'video_etc',
+        'video_id',
+        'lat',
+        'long',
     ];
 }

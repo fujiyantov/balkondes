@@ -51,6 +51,14 @@ class CreateVillageHistoryRequest extends FormRequest
             'video_etc' => [
                 'string',
             ],
+            'lat' => [
+                'required',
+                'numeric'
+            ],
+            'long' => [
+                'required',
+                'numeric'
+            ],
         ];
     }
 }

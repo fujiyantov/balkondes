@@ -63,6 +63,18 @@ class CreateProductRequest extends FormRequest
             'is_published' => [
 
             ],
+            'lat' => [
+                'required',
+                'numeric'
+            ],
+            'long' => [
+                'required',
+                'numeric'
+            ],
+            'video_id' => [
+                'required',
+                'string',
+            ],
         ];
     }
 }

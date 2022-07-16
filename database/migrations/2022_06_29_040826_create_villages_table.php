@@ -21,8 +21,8 @@ class CreateVillagesTable extends Migration
             $table->string('video_id')->nullable();
             $table->string('video_vr')->nullable();
             $table->string('video_etc')->nullable();
-            $table->string('lat')->nullable();
-            $table->string('long')->nullable();
+            $table->double('lat')->nullable();
+            $table->double('long')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

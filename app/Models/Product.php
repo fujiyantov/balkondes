@@ -22,6 +22,9 @@ class Product extends Model
         'additional_information',
         'seller_name',
         'is_published',
+        'video_id',
+        'lat',
+        'long',
     ];
 
     public function village()

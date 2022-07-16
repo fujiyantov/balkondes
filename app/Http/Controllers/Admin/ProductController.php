@@ -173,6 +173,9 @@ class ProductController extends Controller
         $product->description = $data['description'];
         $product->additional_information = $data['additional_information'];
         $product->seller_name = $data['seller_name'];
+        $product->video_id = $data['video_id'];
+        $product->lat = $data['lat'];
+        $product->long = $data['long'];
         if (isset($data['is_published'])) {
             $product->is_published = $data['is_published'];
         }
