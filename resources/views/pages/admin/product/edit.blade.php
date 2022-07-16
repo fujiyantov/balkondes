@@ -228,7 +228,6 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Category</label>
                                         <select class="form-select" name="category" aria-label="Default select example">
-                                            <option selected>Open this select Category</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
@@ -327,7 +326,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Additional Information</label>
                                         <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
-                                            name="additional_information" value="{{ old('additional_information') }}" required> {{ $products->additional_information }}</textarea>
+                                            name="additional_information" value="{{ old('additional_information') }}" required>{{ $products->additional_information }}</textarea>
                                         @error('additional_information')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

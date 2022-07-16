@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(1)->create();
         Village::factory(6)->create();
-        Product::factory(20)->create();
-        Trip::factory(20)->create();
+        Product::factory(6)->create();
+        Trip::factory(6)->create();
         ProductTestimonial::factory(100)->create();
         TripTestimonial::factory(100)->create();
         ProductGallery::factory(50)->create();
         TripGallery::factory(50)->create();
-        VillageHistory::factory(20)->create();
+        VillageHistory::factory(12)->create();
         $this->call(LaratrustSeeder::class);
     }
 }
