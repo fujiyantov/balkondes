@@ -85,7 +85,7 @@ class VillageHistoryController extends Controller
 
             if ($request->hasFile('image')) {
 
-                $data['image'] = $request->file('image')->getClientOriginalName();
+                $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->file('image')->storeAs('assets/villages/images', $data['image']);
             }
 
@@ -141,7 +141,7 @@ class VillageHistoryController extends Controller
         $village = VillageHistory::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->getClientOriginalName();
+            $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('assets/villages/images', $data['image']);
         }
 

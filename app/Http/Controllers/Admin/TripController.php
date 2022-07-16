@@ -88,7 +88,7 @@ class TripController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $data['image'] = $request->file('image')->getClientOriginalName();
+            $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('assets/trips/images', $data['image']);
         }
 
@@ -161,7 +161,7 @@ class TripController extends Controller
 
             $data = $request->only(array_keys($request->rules()));
             if ($request->hasFile('image')) {
-                $data['image'] = $request->file('image')->getClientOriginalName();
+                $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->file('image')->storeAs('assets/trips/images', $data['image']);
                 $trip->image = $data['image'];
             }

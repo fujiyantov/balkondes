@@ -87,7 +87,7 @@ class ProductController extends Controller
 
             $data = $request->only(array_keys($request->rules()));
             if ($request->hasFile('image')) {
-                $data['image'] = $request->file('image')->getClientOriginalName();
+                $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $request->file('image')->storeAs('assets/products/images', $data['image']);
             }
 
@@ -160,7 +160,7 @@ class ProductController extends Controller
 
         $data = $request->only(array_keys($request->rules()));
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->getClientOriginalName();
+            $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('assets/products/images', $data['image']);
             $product->image = $data['image'];
         }
