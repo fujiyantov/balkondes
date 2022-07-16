@@ -174,7 +174,7 @@ class ApiController extends Controller
                     "description" => $item->description,
                     "icons" => ["vrvideo"],
                     // "image" => $imageLink,
-                    "image" => 'https://images.pexels.com/photos/2583854/pexels-photo-2583854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                    "image" => 'https://dm.fujiyantov.id/storage/assets/villages/images/WhatsApp%20Image%202022-07-12%20at%2010.42.05%20(3).jpeg',
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => !0,
                     "powered-by-earch" => !0,
