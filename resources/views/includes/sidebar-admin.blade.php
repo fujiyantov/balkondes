@@ -19,7 +19,9 @@
                 <span class="badge bg-warning-soft text-warning ms-auto">2 New!</span>
             </a>
 
-            @if (Auth::User()->roles->first()->id == 1 || Auth::User()->roles->first()->id == 2 || Auth::User()->roles->first()->id == 3)
+            @if (Auth::User()->roles->first()->id == 1 ||
+                Auth::User()->roles->first()->id == 2 ||
+                Auth::User()->roles->first()->id == 3)
                 <!-- Sidenav Menu Heading (Core)-->
                 <div class="sidenav-menu-heading">Menu</div>
 
@@ -59,6 +61,21 @@
 
             @if (Auth::User()->roles->first()->id == 1)
                 <div class="sidenav-menu-heading">MANAGEMENT</div>
+                <a class="nav-link {{ request()->is('admin/product-categories*') ? 'active' : '' }}"
+                    href="{{ route('product-categories.index') }}">
+                    <div class="nav-link-icon"><i data-feather="folder"></i></div>
+                    Product Category
+                </a>
+                <a class="nav-link {{ request()->is('admin/travel-categories*') ? 'active' : '' }}"
+                    href="{{ route('travel-categories.index') }}">
+                    <div class="nav-link-icon"><i data-feather="folder"></i></div>
+                    Travel Category
+                </a>
+                <a class="nav-link {{ request()->is('admin/cores*') ? 'active' : '' }}"
+                    href="{{ route('cores.index') }}">
+                    <div class="nav-link-icon"><i data-feather="folder"></i></div>
+                    Core
+                </a>
                 <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                     href="{{ route('user.index') }}">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>

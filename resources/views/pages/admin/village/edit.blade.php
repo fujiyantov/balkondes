@@ -140,7 +140,7 @@
                                     <div class="col-md-3">
                                         <label class="small mb-1" for="name">Latitude</label>
                                         <input class="form-control lat @error('lat') is-invalid @enderror" name="lat"
-                                            type="text" value="{{ $villages->lat }}" required readonly />
+                                            type="text" value="{{ $villages->lat }}" required />
                                         @error('lat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -152,7 +152,7 @@
                                     <div class="col-md-3">
                                         <label class="small mb-1" for="name">Longitude</label>
                                         <input class="form-control lon @error('long') is-invalid @enderror" name="long"
-                                            type="text" value="{{ $villages->long }}" required readonly />
+                                            type="text" value="{{ $villages->long }}" required />
                                         @error('long')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

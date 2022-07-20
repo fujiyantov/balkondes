@@ -200,7 +200,7 @@ class ApiController extends Controller
                 ]
             ]
         ];
-        $opening = array_merge($intro, $map, $villages, $products, $trips, $pano);
+        $opening = array_merge($intro, $map, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
