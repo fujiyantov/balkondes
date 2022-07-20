@@ -71,11 +71,6 @@
                     <div class="nav-link-icon"><i data-feather="folder"></i></div>
                     Travel Category
                 </a>
-                <a class="nav-link {{ request()->is('admin/cores*') ? 'active' : '' }}"
-                    href="{{ route('cores.index') }}">
-                    <div class="nav-link-icon"><i data-feather="folder"></i></div>
-                    Core
-                </a>
                 <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                     href="{{ route('user.index') }}">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
@@ -89,6 +84,11 @@
                 <a class="nav-link" target="_blank" href="/admin/management">
                     <div class="nav-link-icon"><i data-feather="sliders"></i></div>
                     Settings
+                </a>
+                <a class="nav-link {{ request()->is('admin/cores*') ? 'active' : '' }}"
+                    href="{{ route('cores.index') }}">
+                    <div class="nav-link-icon"><i data-feather="settings"></i></div>
+                    Core
                 </a>
             @endif
         </div>

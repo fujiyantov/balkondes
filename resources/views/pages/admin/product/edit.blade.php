@@ -228,9 +228,10 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Category</label>
                                         <select class="form-select" name="category" aria-label="Default select example">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                    @if ($category->id == $products->category) selected @endif>{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                         @error('category_id')
                                             <div class="invalid-feedback">
@@ -246,114 +247,113 @@
                                             <img src="{{ $products->image }}" class="img-thumbnail" alt="image_village">
                                         @else
                                             <img src="{{ Storage::url('/assets/products/images/' . $products->image) }}"
-                                                class="img-thumbnail" alt="image_village">
-                                        @endif
+                                                class="img-thumbnail" alt="image_village"> @endif
+                                                    </div>
                                     </div>
-                                </div>
 
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Banner</label>
-                                        <input class="form-control @error('image') is-invalid @enderror" name="image"
-                                            type="file" value="{{ old('image') }}" />
-                                        @error('image')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            @foreach ($products->gallery as $item)
-                                                <div class="col-md-{{ 12 / $products->gallery->count() }}">
-                                                    <img src="{{ Storage::url('/assets/products/gallery/' . $item->image) }}"
-                                                        class="img-thumbnail" alt="image_product">
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="name">Banner</label>
+                                            <input class="form-control @error('image') is-invalid @enderror"
+                                                name="image" type="file" value="{{ old('image') }}" />
+                                            @error('image')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
                                                 </div>
-                                            @endforeach
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Image (multiple)</label>
-                                        <input class="form-control @error('photo') is-invalid @enderror" name="photo[]"
-                                            type="file" value="{{ old('photo') }}" multiple />
-                                        @error('photo')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                    <div class="row gx-3 mb-3">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                @foreach ($products->gallery as $item)
+                                                    <div class="col-md-{{ 12 / $products->gallery->count() }}">
+                                                        <img src="{{ Storage::url('/assets/products/gallery/' . $item->image) }}"
+                                                            class="img-thumbnail" alt="image_product">
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                        @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Address</label>
-                                        <textarea class="form-control @error('address') is-invalid @enderror" cols="30" rows="5" name="address"
-                                            value="{{ old('address') }}" required>{{ $products->address }}</textarea>
-                                        @error('address')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="name">Image (multiple)</label>
+                                            <input class="form-control @error('photo') is-invalid @enderror"
+                                                name="photo[]" type="file" value="{{ old('photo') }}" multiple />
+                                            @error('photo')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Description</label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
-                                            name="description" value="{{ old('description') }}" required>{{ $products->description }}</textarea>
-                                        @error('description')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="name">Address</label>
+                                            <textarea class="form-control @error('address') is-invalid @enderror" cols="30" rows="5" name="address"
+                                                value="{{ old('address') }}" required>{{ $products->address }}</textarea>
+                                            @error('address')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Additional Information</label>
-                                        <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
-                                            name="additional_information" value="{{ old('additional_information') }}" required>{{ $products->additional_information }}</textarea>
-                                        @error('additional_information')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="name">Description</label>
+                                            <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
+                                                name="description" value="{{ old('description') }}" required>{{ $products->description }}</textarea>
+                                            @error('description')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Seller Name</label>
-                                        <input class="form-control @error('seller_name') is-invalid @enderror"
-                                            name="seller_name" type="text" value="{{ $products->seller_name }}"
-                                            required />
-                                        @error('seller_name')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="name">Additional Information</label>
+                                            <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
+                                                name="additional_information" value="{{ old('additional_information') }}" required>{{ $products->additional_information }}</textarea>
+                                            @error('additional_information')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <!-- Submit button-->
-                                <button class="btn btn-primary" type="submit">
-                                    Update Product
-                                </button>
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (first name)-->
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="name">Seller Name</label>
+                                            <input class="form-control @error('seller_name') is-invalid @enderror"
+                                                name="seller_name" type="text" value="{{ $products->seller_name }}"
+                                                required />
+                                            @error('seller_name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit button-->
+                                    <button class="btn btn-primary" type="submit">
+                                        Update Product
+                                    </button>
                             </form>
                         </div>
                     </div>

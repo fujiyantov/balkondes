@@ -140,7 +140,7 @@
                                     <div class="col-md-3">
                                         <label class="small mb-1" for="name">Latitude</label>
                                         <input class="form-control lat @error('lat') is-invalid @enderror" name="lat"
-                                            type="text" value="{{ $trips->lat }}" required readonly />
+                                            type="text" value="{{ $trips->lat }}" required />
                                         @error('lat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -152,7 +152,7 @@
                                     <div class="col-md-3">
                                         <label class="small mb-1" for="name">Longitude</label>
                                         <input class="form-control lon @error('long') is-invalid @enderror" name="long"
-                                            type="text" value="{{ $trips->long }}" required readonly />
+                                            type="text" value="{{ $trips->long }}" required />
                                         @error('long')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -228,9 +228,10 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Category</label>
                                         <select class="form-select" name="category" aria-label="Default select example">
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}"
+                                                    @if ($category->id == $trips->category) selected @endif>{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                         @error('category_id')
                                             <div class="invalid-feedback">
@@ -257,7 +258,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Banner</label>
                                         <input class="form-control @error('image') is-invalid @enderror" name="image"
-                                            type="file" value="{{ old('image') }}" required />
+                                            type="file" value="{{ old('image') }}" />
                                         @error('image')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

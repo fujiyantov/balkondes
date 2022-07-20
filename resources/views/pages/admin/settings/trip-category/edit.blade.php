@@ -45,7 +45,7 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('trip-categories.update', $item->id) }}" method="POST"
+                            <form action="{{ route('travel-categories.update', $item->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')

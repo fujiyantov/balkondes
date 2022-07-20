@@ -24,7 +24,7 @@ class UpdateCoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'value' => [
                 'required',
                 'string',
             ]

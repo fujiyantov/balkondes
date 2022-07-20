@@ -158,15 +158,15 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Village</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
-                                            @foreach($villages as $village)
-                                            <option value="{{ $village->id }}">{{ $village->name }}</option>
+                                            @foreach ($villages as $village)
+                                                <option value="{{ $village->id }}">{{ $village->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('village_id')
@@ -224,10 +224,9 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Category</label>
                                         <select class="form-select" name="category" aria-label="Default select example">
-                                            <option selected>Open this select Category</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                         @error('category_id')
                                             <div class="invalid-feedback">

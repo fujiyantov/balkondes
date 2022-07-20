@@ -4,9 +4,26 @@
     Culture Hisotry
 @endsection
 
+@section('stylesheet')
+    <style>
+        .bg-header-custom{
+            background:
+            linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+            ),
+            url('https://dm.fujiyantov.id/storage/assets/products/images/1658000065.jpeg');
+            /* height: 100%; */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+@endsection
+
 @section('container')
     <main>
-        <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <header class="page-header page-header-dark pb-10 bg-header-custom">
             <div class="container-xl px-4">
                 <div class="page-header-content pt-4">
                     <div class="row align-items-center justify-content-between">

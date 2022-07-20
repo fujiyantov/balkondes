@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\CreateTripCategoryRequest;
+use App\Http\Requests\UpdateProductCategoryRequest;
 
 class TripCategoryController extends Controller
 {
@@ -23,10 +24,10 @@ class TripCategoryController extends Controller
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-                        <a class="btn btn-primary btn-xs" href="' . route('trip-categories.edit', $item->id) . '">
+                        <a class="btn btn-primary btn-xs" href="' . route('travel-categories.edit', $item->id) . '">
                             <i class="fas fa-edit"></i> &nbsp; Ubah
                         </a>
-                        <form action="' . route('trip-categories.destroy', $item->id) . '" method="POST" onsubmit="return confirm(' . "'Anda akan menghapus item ini secara permanen dari situs anda?'" . ')">
+                        <form action="' . route('travel-categories.destroy', $item->id) . '" method="POST" onsubmit="return confirm(' . "'Anda akan menghapus item ini secara permanen dari situs anda?'" . ')">
                             ' . method_field('delete') . csrf_field() . '
                             <button class="btn btn-danger btn-xs">
                                 <i class="far fa-trash-alt"></i> &nbsp; Hapus
@@ -49,7 +50,7 @@ class TripCategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.settings.product-category.create');
+        return view('pages.admin.settings.trip-category.create');
     }
 
     /**
@@ -64,7 +65,7 @@ class TripCategoryController extends Controller
 
         TripCategory::create($data);
 
-        return redirect()->route('trip-categories.index')->with('success', 'Create Category has been successfully');
+        return redirect()->route('travel-categories.index')->with('success', 'Create Category has been successfully');
     }
 
     /**
@@ -86,7 +87,7 @@ class TripCategoryController extends Controller
     {
         $item = TripCategory::findOrFail($id);
 
-        return view('pages.admin.settings.product-category.edit', [
+        return view('pages.admin.settings.trip-category.edit', [
             'item' => $item,
         ]);
     }
@@ -104,7 +105,7 @@ class TripCategoryController extends Controller
         $item->name = $request->input('name');
         $item->save();
 
-        return redirect()->route('trip-categories.index')->with('success', 'Update Category has been successfully');
+        return redirect()->route('travel-categories.index')->with('success', 'Update Category has been successfully');
     }
 
     /**

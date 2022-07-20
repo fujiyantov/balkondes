@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\ProductCategory;
 use App\Models\ProductGallery;
 
 class ProductController extends Controller
@@ -70,7 +71,12 @@ class ProductController extends Controller
     public function create()
     {
         $villages = Village::all();
-        return view('pages.admin.product.create', ['villages' => $villages]);
+        $categories = ProductCategory::all();
+
+        return view('pages.admin.product.create', [
+            'villages' => $villages,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -123,8 +129,11 @@ class ProductController extends Controller
     public function show($id)
     {
         $products = Product::findOrFail($id);
+        $categories = ProductCategory::all();
+
         return view('pages.admin.product.show', [
             'products' => $products,
+            'categories' => $categories,
         ]);
     }
 
@@ -138,9 +147,12 @@ class ProductController extends Controller
     {
         $products = Product::findOrFail($id);
         $villages = Village::all();
+        $categories = ProductCategory::all();
+
         return view('pages.admin.product.edit', [
             'villages' => $villages,
             'products' => $products,
+            'categories' => $categories,
         ]);
     }
 
@@ -154,7 +166,6 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         DB::beginTransaction();
-        // try {
 
         $product = Product::findOrFail($id);
 
@@ -199,10 +210,6 @@ class ProductController extends Controller
 
         DB::commit();
         return redirect()->route('products.index')->with('success', 'Update Product has been successfully');
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     throw log($e);
-        // }
     }
 
     /**

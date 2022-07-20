@@ -45,7 +45,7 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <form action="{{ route('trip-categories.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('travel-categories.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row gx-3 mb-3">

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoreController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\Admin\UserController;
@@ -8,8 +9,9 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\VillageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TripCategoryController;
 use App\Http\Controllers\Admin\VillageHistoryController;
-use App\Http\Controllers\CoreController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,8 +57,8 @@ Route::prefix('admin')
         // USER
         Route::resource('user', UserController::class);
         Route::resource('cores', CoreController::class);
-        Route::resource('product-categories', UserController::class);
-        Route::resource('travel-categories', UserController::class);
+        Route::resource('product-categories', ProductCategoryController::class);
+        Route::resource('travel-categories', TripCategoryController::class);
         Route::resource('setting', SettingController::class, [
             'except' => ['show']
         ]);

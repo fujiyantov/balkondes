@@ -35,9 +35,9 @@
                 <div class="col-lg-12">
                     <div class="card card-header-actions mb-4">
                         <div class="card-header">
-                            List Product Category
-                            <a class="btn btn-sm btn-primary" href="{{ route('trip-categories.create') }}">
-                                Tambah Product Category Baru
+                            List Travel Category
+                            <a class="btn btn-sm btn-primary" href="{{ route('travel-categories.create') }}">
+                                Tambah Travel Category Baru
                             </a>
                         </div>
                         <div class="card-body">

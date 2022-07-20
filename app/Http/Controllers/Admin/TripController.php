@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Trip;
 use App\Models\Village;
 use App\Models\TripGallery;
+use App\Models\TripCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -70,7 +71,12 @@ class TripController extends Controller
     public function create()
     {
         $villages = Village::all();
-        return view('pages.admin.trip.create', ['villages' => $villages]);
+        $categories = TripCategory::all();
+
+        return view('pages.admin.trip.create', [
+            'villages' => $villages,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -82,7 +88,6 @@ class TripController extends Controller
     public function store(CreateTripRequest $request)
     {
         DB::beginTransaction();
-        // try {
 
         $data = $request->only(array_keys($request->rules()));
 
@@ -109,10 +114,6 @@ class TripController extends Controller
 
         DB::commit();
         return redirect()->route('trips.index')->with('success', 'Create Trip has been successfully');
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        //     throw log($e);
-        // }
     }
 
     /**
@@ -139,9 +140,13 @@ class TripController extends Controller
     {
         $trips = Trip::findOrFail($id);
         $villages = Village::all();
+        $categories = TripCategory::all();
+
         return view('pages.admin.trip.edit', [
             'villages' => $villages,
             'trips' => $trips,
+            'categories' => $categories,
+            
         ]);
     }
 
