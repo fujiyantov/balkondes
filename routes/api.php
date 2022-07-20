@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('collections', [ApiController::class, 'index']);
+Route::get('v2/collections', [ApiController::class, 'v2']);
