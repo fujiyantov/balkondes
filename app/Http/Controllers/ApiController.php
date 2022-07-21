@@ -257,7 +257,7 @@ class ApiController extends Controller
                         "lat" => $item->lat,
                         "lng" => $item->long
                     ],
-                    "mapIcon" => "cave_spring.svg",
+                    "mapIcon" => "map-world.png",
                     "titlecard" => [
                         "narrators" => [
                             [
@@ -301,7 +301,7 @@ class ApiController extends Controller
                             "lat" => $val->lat,
                             "lng" => $val->long
                         ],
-                        "mapIcon" => "cave_spring.svg",
+                        "mapIcon" => "map-world.png",
                         "titlecard" => [
                             "narrators" => [
                                 [
@@ -375,7 +375,7 @@ class ApiController extends Controller
                         "lat" => $item->lat,
                         "lng" => $item->long
                     ],
-                    "mapIcon" => "cave_spring.svg",
+                    "mapIcon" => "map-world.png",
                     "titlecard" => [
                         "narrators" => [
                             [
@@ -448,7 +448,7 @@ class ApiController extends Controller
                         "lat" => $item->lat,
                         "lng" => $item->long
                     ],
-                    "mapIcon" => "cave_spring.svg",
+                    "mapIcon" => "map-world.png",
                     "titlecard" => [
                         "narrators" => [
                             [
@@ -607,7 +607,7 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => $i,
                     "description" => $item->description,
-                    "icons" => ["vrvideo"],
+                    "icons" => ["culture"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => !0,
@@ -616,7 +616,7 @@ class ApiController extends Controller
                         "lat" => $item->lat,
                         "lng" => $item->long
                     ],
-                    "mapIcon" => "cave_spring.svg",
+                    "mapIcon" => "map-world.png",
                     "titlecard" => [
                         "narrators" => [
                             [
@@ -651,7 +651,7 @@ class ApiController extends Controller
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
                         "description" => $val->description,
-                        "icons" => ["vrvideo"],
+                        "icons" => ["culture"],
                         "image" => $imageLinkCulture,
                         "videoId" => $val->video_id,
                         "no-auto-next-button" => !0,
@@ -660,7 +660,7 @@ class ApiController extends Controller
                             "lat" => $val->lat,
                             "lng" => $val->long
                         ],
-                        "mapIcon" => "cave_spring.svg",
+                        "mapIcon" => "map-world.png",
                         "titlecard" => [
                             "narrators" => [
                                 [
