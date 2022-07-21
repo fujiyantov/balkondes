@@ -213,7 +213,7 @@ class ApiController extends Controller
                 "name" => 'Culture',
                 "number" => 01,
                 "icons" => [
-                    "video"
+                    "culture"
                 ],
                 "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fugit labore ullam",
                 "image" => 'https://images.pexels.com/photos/2583854/pexels-photo-2583854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -248,7 +248,7 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => 1 . '.' . $i,
                     "description" => $item->description,
-                    "icons" => ["vrvideo"],
+                    "icons" => ["culture"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => !0,
@@ -261,7 +261,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Octavius",
+                                "name" => "Jhone Doe",
                                 "image" => "octavius_seowtewa.jpg"
                             ]
                         ]
@@ -281,8 +281,8 @@ class ApiController extends Controller
                 }
 
                 $culture = [
-                    "next" => "cave-spring-video",
-                    "prev" => "history-horseback",
+                    "next" => "/",
+                    "prev" => "/",
                     "type" => "video",
                     "level" => 2,
                     "json" => "14_water_offering.json",
@@ -292,7 +292,7 @@ class ApiController extends Controller
                         "name" => $val->name,
                         "number" => 1 . '.' . $i . '.' . $j++,
                         "description" => $val->description,
-                        "icons" => ["vrvideo"],
+                        "icons" => ["culture"],
                         "image" => $imageLinkCulture,
                         "videoId" => $val->video_id,
                         "no-auto-next-button" => !0,
@@ -305,7 +305,7 @@ class ApiController extends Controller
                         "titlecard" => [
                             "narrators" => [
                                 [
-                                    "name" => "Octavius",
+                                    "name" => "Jhone Doe",
                                     "image" => "octavius_seowtewa.jpg"
                                 ]
                             ]
@@ -331,7 +331,7 @@ class ApiController extends Controller
                 "name" => 'Product',
                 "number" => 02,
                 "icons" => [
-                    "video"
+                    "product"
                 ],
                 "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fugit labore ullam",
                 "image" => 'https://images.pexels.com/photos/758742/pexels-photo-758742.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -355,8 +355,8 @@ class ApiController extends Controller
             }
 
             $products = [
-                "next" => "cave-spring-video",
-                "prev" => "history-horseback",
+                "next" => "/",
+                "prev" => "/",
                 "type" => "video",
                 "level" => 2,
                 "json" => "14_water_offering.json",
@@ -366,7 +366,7 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => 2 . '.' . $p,
                     "description" => $item->description,
-                    "icons" => ["vrvideo"],
+                    "icons" => ["product"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => !0,
@@ -379,7 +379,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Octavius",
+                                "name" => "Jhone Doe",
                                 "image" => "octavius_seowtewa.jpg"
                             ]
                         ]
@@ -404,7 +404,7 @@ class ApiController extends Controller
                 "name" => 'Travel',
                 "number" => 03,
                 "icons" => [
-                    "video"
+                    "travel"
                 ],
                 "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fugit labore ullam",
                 "image" => 'https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
@@ -439,7 +439,7 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => 3 . '.' . $t,
                     "description" => $item->description,
-                    "icons" => ["vrvideo"],
+                    "icons" => ["travel"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => !0,
@@ -452,7 +452,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Octavius",
+                                "name" => "Jhone Doe",
                                 "image" => "octavius_seowtewa.jpg"
                             ]
                         ]
