@@ -16,7 +16,7 @@ class ApiController extends Controller
         $intro = [
             "intro" => [
                 "id" => "intro",
-                "next" => "culture",
+                "next" => "/",
                 "type" => "intro",
                 "level" => 0,
                 "content" => [
@@ -126,8 +126,8 @@ class ApiController extends Controller
         $trips = [];
         $pano = [
             "street" => [
-                "next" => "living-museum-streetview",
-                "prev" => "escaping-places",
+                "next" => "/",
+                "prev" => "/",
                 "type" => "pano",
                 "level" => 2,
                 "json" => "12_living_museum.json",
@@ -475,7 +475,7 @@ class ApiController extends Controller
         $intro = [
             "intro" => [
                 "id" => "intro",
-                "next" => "culture",
+                "next" => "/",
                 "type" => "intro",
                 "level" => 0,
                 "content" => [
@@ -640,8 +640,8 @@ class ApiController extends Controller
                 }
 
                 $culture = [
-                    "next" => "cave-spring-video",
-                    "prev" => "history-horseback",
+                    "next" => "/",
+                    "prev" => "/",
                     "type" => "video",
                     "level" => 2,
                     "json" => "14_water_offering.json",
