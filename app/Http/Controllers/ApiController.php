@@ -121,7 +121,10 @@ class ApiController extends Controller
             ]
         ];
 
-        $villages = [];
+        $opening = array_merge($intro, $map);
+        return response()->json($opening);
+
+        /* $villages = [];
         $products = [];
         $trips = [];
         $pano = [
@@ -466,7 +469,7 @@ class ApiController extends Controller
             $t++;
         }
 
-        return response()->json($opening);
+        return response()->json($opening); */
     }
 
     public function v2()
