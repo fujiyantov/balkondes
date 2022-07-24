@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => '*',
+    'allowed_origins' => ['https://balkondes.fujiyantov.id/', 'https://culture.fujiyantov.id/'],
 
     'allowed_origins_patterns' => [],
 
