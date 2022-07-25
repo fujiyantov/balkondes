@@ -288,8 +288,8 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Jhone Doe",
-                                "image" => "octavius_seowtewa.jpg"
+                                "name" => "KBKM",
+                                "image" => "logo-kbkm.png"
                             ]
                         ]
                     ],
@@ -332,8 +332,8 @@ class ApiController extends Controller
                         "titlecard" => [
                             "narrators" => [
                                 [
-                                    "name" => "Jhone Doe",
-                                    "image" => "octavius_seowtewa.jpg"
+                                    "name" => "KBKM",
+                                    "image" => "logo-kbkm.png"
                                 ]
                             ]
                         ],
@@ -406,8 +406,8 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Jhone Doe",
-                                "image" => "octavius_seowtewa.jpg"
+                                "name" => "KBKM",
+                                "image" => "logo-kbkm.png"
                             ]
                         ]
                     ],
@@ -479,8 +479,8 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Jhone Doe",
-                                "image" => "octavius_seowtewa.jpg"
+                                "name" => "KBKM",
+                                "image" => "logo-kbkm.png"
                             ]
                         ]
                     ],
@@ -686,8 +686,8 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "Octavius",
-                                "image" => "octavius_seowtewa.jpg"
+                                "name" => "KBKM",
+                                "image" => "logo-kbkm.png"
                             ]
                         ]
                     ],
@@ -730,8 +730,8 @@ class ApiController extends Controller
                         "titlecard" => [
                             "narrators" => [
                                 [
-                                    "name" => "Octavius",
-                                    "image" => "octavius_seowtewa.jpg"
+                                    "name" => "KBKM",
+                                    "image" => "logo-kbkm.png"
                                 ]
                             ]
                         ],
