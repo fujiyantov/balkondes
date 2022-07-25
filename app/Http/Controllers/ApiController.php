@@ -121,6 +121,28 @@ class ApiController extends Controller
             ]
         ];
 
+        $videos = Storage::url('/assets/videos/borobudur.mp4');
+        // Exp
+        $exp = [
+            "experience" => [
+                "next" => "",
+                "prev" => "",
+                "type" => "video",
+                "level" => 4,
+                "url" => "experience",
+                "content" => [
+                    "name" => "Experience VR",
+                    "description" => "If you're using Google Cardboard or a VR headset, lay your phone in place, and hit the \"I'm ready\" button.",
+                    "videoId" => "UK9BtMoFnEc",
+                    "videoVR" => "./assets/videos/borobudur.mp4.mp4",
+                    // "videoVRCDN" => "https://storage.googleapis.com/patagonia-bearsears.appspot.com/videos/experienceVR.mp4",
+                    "videoVRCDN" => $videos,
+                    "experienceVR" => !0,
+                    "showNextCard" => !1
+                ]
+            ]
+        ];
+
         $villages = [];
         $products = [];
         $trips = [];
@@ -200,7 +222,7 @@ class ApiController extends Controller
                 ]
             ]
         ];
-        $opening = array_merge($intro, $map, $villages, $products, $trips);
+        $opening = array_merge($intro, $map, $exp, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
@@ -580,11 +602,50 @@ class ApiController extends Controller
             ]
         ];
 
+        //takeaction
+        $act = [
+            "take-action" => [
+                "prev" => "indian-creek",
+                "type" => "takeaction",
+                "level" => 2,
+                "url" => "take-action",
+                "parent" => "take-action",
+                "content" => [
+                    "name" => "Take Action",
+                    "cta" => "Defend",
+                    "number" => "03",
+                    "image" => "03_action.jpg",
+                    "description" => "Keep public lands in public hands. Protect Bears Ears.",
+                    "videoId" => "Bc-Ypj7zttU",
+                    "showNextCard" => !1
+                ]
+            ],
+        ];
+
+        $exp = [
+            "experience" => [
+                "next" => "",
+                "prev" => "",
+                "type" => "video",
+                "level" => 4,
+                "url" => "experience",
+                "content" => [
+                    "name" => "Experience VR",
+                    "description" => "If you're using Google Cardboard or a VR headset, lay your phone in place, and hit the \"I'm ready\" button.",
+                    "videoId" => "UK9BtMoFnEc",
+                    // "videoVR" => "./assets/videos/experienceVR.mp4",
+                    // "videoVRCDN" => "https://storage.googleapis.com/patagonia-bearsears.appspot.com/videos/experienceVR.mp4",
+                    "experienceVR" => !0,
+                    "showNextCard" => !1
+                ]
+            ]
+        ];
+
         $villages = [];
         $products = [];
         $trips = [];
 
-        $opening = array_merge($intro, $map, $villages, $products, $trips);
+        $opening = array_merge($intro, $map, $exp, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
