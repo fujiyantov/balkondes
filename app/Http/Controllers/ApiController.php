@@ -289,7 +289,7 @@ class ApiController extends Controller
                         "narrators" => [
                             [
                                 "name" => "KBKM",
-                                "image" => "logo-kbkm.png"
+                                "image" => "logo-kbkm-profile.png"
                             ]
                         ]
                     ],
@@ -333,7 +333,7 @@ class ApiController extends Controller
                             "narrators" => [
                                 [
                                     "name" => "KBKM",
-                                    "image" => "logo-kbkm.png"
+                                    "image" => "logo-kbkm-profile.png"
                                 ]
                             ]
                         ],
@@ -407,7 +407,7 @@ class ApiController extends Controller
                         "narrators" => [
                             [
                                 "name" => "KBKM",
-                                "image" => "logo-kbkm.png"
+                                "image" => "logo-kbkm-profile.png"
                             ]
                         ]
                     ],
@@ -480,7 +480,7 @@ class ApiController extends Controller
                         "narrators" => [
                             [
                                 "name" => "KBKM",
-                                "image" => "logo-kbkm.png"
+                                "image" => "logo-kbkm-profile.png"
                             ]
                         ]
                     ],
@@ -687,7 +687,7 @@ class ApiController extends Controller
                         "narrators" => [
                             [
                                 "name" => "KBKM",
-                                "image" => "logo-kbkm.png"
+                                "image" => "logo-kbkm-profile.png"
                             ]
                         ]
                     ],
@@ -731,7 +731,7 @@ class ApiController extends Controller
                             "narrators" => [
                                 [
                                     "name" => "KBKM",
-                                    "image" => "logo-kbkm.png"
+                                    "image" => "logo-kbkm-profile.png"
                                 ]
                             ]
                         ],
