@@ -125,8 +125,8 @@ class ApiController extends Controller
         // Exp
         $exp = [
             "experience" => [
-                "next" => "",
-                "prev" => "",
+                "next" => "/",
+                "prev" => "/",
                 "type" => "video",
                 "level" => 4,
                 "url" => "experience",
@@ -264,13 +264,13 @@ class ApiController extends Controller
             }
 
             $villages = [
-                "next" => "cave-spring-video",
-                "prev" => "history-horseback",
+                "next" => "/",
+                "prev" => "/",
                 "type" => "video",
                 "level" => 2,
                 "json" => "14_water_offering.json",
                 "parent" => "culture",
-                "url" => "culture/cave-spring",
+                "url" => "/",
                 "content" => [
                     "name" => $item->name,
                     "number" => 1 . '.' . $i,
@@ -278,7 +278,7 @@ class ApiController extends Controller
                     "icons" => ["culture"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
-                    "no-auto-next-button" => !0,
+                    "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
                         "lat" => $item->lat,
@@ -322,7 +322,7 @@ class ApiController extends Controller
                         "icons" => ["culture"],
                         "image" => $imageLinkCulture,
                         "videoId" => $val->video_id,
-                        "no-auto-next-button" => !0,
+                        "no-auto-next-button" => false,
                         "powered-by-earch" => !0,
                         "mapCoord" => [
                             "lat" => $val->lat,
@@ -396,7 +396,7 @@ class ApiController extends Controller
                     "icons" => ["product"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
-                    "no-auto-next-button" => !0,
+                    "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
                         "lat" => $item->lat,
@@ -455,8 +455,8 @@ class ApiController extends Controller
             }
 
             $trips = [
-                "next" => "cave-spring-video",
-                "prev" => "history-horseback",
+                "next" => "/",
+                "prev" => "/",
                 "type" => "video",
                 "level" => 2,
                 "json" => "14_water_offering.json",
@@ -469,7 +469,7 @@ class ApiController extends Controller
                     "icons" => ["travel"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
-                    "no-auto-next-button" => !0,
+                    "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
                         "lat" => $item->lat,
@@ -629,8 +629,8 @@ class ApiController extends Controller
 
         $exp = [
             "experience" => [
-                "next" => "",
-                "prev" => "",
+                "next" => "/",
+                "prev" => "/",
                 "type" => "video",
                 "level" => 4,
                 "url" => "experience",
@@ -676,7 +676,7 @@ class ApiController extends Controller
                     "icons" => ["culture"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
-                    "no-auto-next-button" => !0,
+                    "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
                         "lat" => $item->lat,
@@ -712,7 +712,7 @@ class ApiController extends Controller
                     "level" => 2,
                     "json" => "14_water_offering.json",
                     "parent" => "culture",
-                    "url" => "culture/cave-spring",
+                    "url" => "/",
                     "content" => [
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
@@ -720,7 +720,7 @@ class ApiController extends Controller
                         "icons" => ["culture"],
                         "image" => $imageLinkCulture,
                         "videoId" => $val->video_id,
-                        "no-auto-next-button" => !0,
+                        "no-auto-next-button" => false,
                         "powered-by-earch" => !0,
                         "mapCoord" => [
                             "lat" => $val->lat,
