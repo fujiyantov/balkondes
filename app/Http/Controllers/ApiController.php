@@ -134,13 +134,14 @@ class ApiController extends Controller
                     "name" => "Experience VR",
                     "description" => "If you're using Google Cardboard or a VR headset, lay your phone in place, and hit the \"I'm ready\" button.",
 
-                    // "videoId" => "vZwgTdPqIbo",
-                    // "videoVR" => "./assets/videos/experienceVR.mp4",
-                    // "videoVRCDN" => "https://storage.googleapis.com/patagonia-bearsears.appspot.com/videos/experienceVR.mp4",
+                    "videoId" => "vZwgTdPqIbo",
+                    "videoVR" => "./assets/videos/experienceVR.mp4",
+                    "videoVRCDN" => "https://storage.googleapis.com/patagonia-bearsears.appspot.com/videos/experienceVR.mp4",
 
-                    "videoId" => "UK9BtMoFnEc",
-                    "videoVR" => "./assets/videos/borobudur.mp4",
-                    "videoVRCDN" => $videos,
+                    // "videoId" => "UK9BtMoFnEc",
+                    // "videoVR" => "./assets/videos/borobudur.mp4",
+                    // "videoVRCDN" => $videos,
+
                     "experienceVR" => !0,
                     "showNextCard" => !1
                 ]
