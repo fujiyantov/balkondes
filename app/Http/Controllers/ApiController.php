@@ -139,8 +139,8 @@ class ApiController extends Controller
                     "videoVRCDN" => "https://storage.googleapis.com/patagonia-bearsears.appspot.com/videos/experienceVR.mp4", */
 
                     "videoId" => "UK9BtMoFnEc",
-                    "videoVR" => "./assets/videos/borobudur.mp4",
-                    "videoVRCDN" => $videos,
+                    // "videoVR" => "./assets/videos/borobudur.mp4",
+                    // "videoVRCDN" => $videos,
 
                     "experienceVR" => !0,
                     "showNextCard" => !1
