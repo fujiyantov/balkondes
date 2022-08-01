@@ -8,8 +8,9 @@
     <!-- * * * * * * When using an image, we recommend the SVG format.-->
     <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
     <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="{{ route('admin-dashboard') }}">
-        <img src="{{ asset('/assets/icons/logo-kementrian.svg') }}" style="margin-right: 10px" alt="" width="60">
-        <img src="{{ asset('/assets/icons/logo-kbkm-blue.png') }}" alt="" width="60">
+        <img src="{{ asset('/assets/icons/logo.png') }}" style="margin-right: 10px" alt="">
+        <img src="{{ asset('/assets/icons/logo-kementrian.svg') }}" style="margin-right: 10px" alt="">
+        <img src="{{ asset('/assets/icons/logo-kbkm-blue.png') }}" alt="">
     </a>
     <!-- Navbar Search Input-->
     <!-- * * Note: * * Visible only on and above the lg breakpoint-->

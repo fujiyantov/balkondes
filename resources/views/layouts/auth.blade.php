@@ -24,12 +24,13 @@
             .ilustrasi-orang-foot {
                 position: absolute;
                 top: 20vw;
-                left: 4vw;
+                /* left: 4vw; */
+                left: -5vw;
             }
             .ilustrasi-wanita {
                 position: absolute;
                 top: 20vw;
-                left: 70vw;
+                left: 72vw;
             }
         </style>
     </head>

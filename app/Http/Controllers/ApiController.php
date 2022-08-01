@@ -608,7 +608,7 @@ class ApiController extends Controller
         ];
 
         //takeaction
-        $act = [
+        /* $act = [
             "take-action" => [
                 "prev" => "indian-creek",
                 "type" => "takeaction",
@@ -625,7 +625,7 @@ class ApiController extends Controller
                     "showNextCard" => !1
                 ]
             ],
-        ];
+        ]; */
 
         /* $exp = [
             "experience" => [
@@ -650,7 +650,7 @@ class ApiController extends Controller
         $products = [];
         $trips = [];
 
-        $opening = array_merge($intro, $map, $act, $villages, $products, $trips);
+        $opening = array_merge($intro, $map, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
@@ -745,7 +745,7 @@ class ApiController extends Controller
             $i++;
         }
 
-        $narasi = [
+        /* $narasi = [
             "next" => "/",
             "prev" => "/",
             "type" => "narasi",
@@ -779,7 +779,7 @@ class ApiController extends Controller
             ],
         ];
 
-        array_push($opening, $narasi);
+        array_push($opening, $narasi); */
 
         return response()->json($opening);
     }

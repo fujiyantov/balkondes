@@ -10,11 +10,15 @@
                         <div class="card-header d-flex justify-content-center" style="background: #fff">
                             {{-- Brand --}}
                             <div class="row align-items-baseline">
-                                <div class="col-6">
-                                    <img src="{{ asset('/assets/icons/logo-kementrian.svg') }}" class="img img-fluid"
+                                <div class="col-4">
+                                    <img src="{{ asset('/assets/icons/logo.png') }}" class="img img-fluid" width="60%"
                                         alt="">
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
+                                    <img src="{{ asset('/assets/icons/logo-kementrian.svg') }}" class="img img-fluid"
+                                        alt="" style="margin-left: -18px">
+                                </div>
+                                <div class="col-4">
                                     <img src="{{ asset('/assets/icons/logo-kbkm-blue.png') }}" class="img img-fluid"
                                         alt="">
                                 </div>
