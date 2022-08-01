@@ -716,6 +716,7 @@ class ApiController extends Controller
                     "url" => "/",
                     "content" => [
                         "storyID" => $val->id,
+                        "urlTarget" => "http://127.0.0.1:8000",
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
                         "description" => $val->description,
