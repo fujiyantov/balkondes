@@ -612,7 +612,7 @@ class ApiController extends Controller
             "take-action" => [
                 "prev" => "indian-creek",
                 "type" => "takeaction",
-                "level" => 2,
+                "level" => 1,
                 "url" => "take-action",
                 "parent" => "take-action",
                 "content" => [
@@ -627,7 +627,7 @@ class ApiController extends Controller
             ],
         ];
 
-        $exp = [
+        /* $exp = [
             "experience" => [
                 "next" => "/",
                 "prev" => "/",
@@ -644,13 +644,13 @@ class ApiController extends Controller
                     "showNextCard" => !1
                 ]
             ]
-        ];
+        ]; */
 
         $villages = [];
         $products = [];
         $trips = [];
 
-        $opening = array_merge($intro, $map, $exp, $villages, $products, $trips);
+        $opening = array_merge($intro, $map, $act, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
@@ -744,6 +744,42 @@ class ApiController extends Controller
 
             $i++;
         }
+
+        $narasi = [
+            "next" => "/",
+            "prev" => "/",
+            "type" => "narasi",
+            "level" => 2,
+            "json" => "14_water_offering.json",
+            "parent" => "culture",
+            "url" => "/",
+            "content" => [
+                "name" => "ini narasi",
+                "number" => "1000",
+                "description" => "narasi banget",
+                "icons" => ["culture"],
+                "image" => "https://dm.fujiyantov.id/storage/assets/villages/images/1657983079.jpeg",
+                "videoId" => "kDoyrTT5eqw",
+                "no-auto-next-button" => false,
+                "powered-by-earch" => !0,
+                "mapCoord" => [
+                    "lat" => -7.6378263,
+                    "lng" => 110.1849323
+                ],
+                "mapIcon" => "map-world.png",
+                "titlecard" => [
+                    "narrators" => [
+                        [
+                            "name" => "KBKM",
+                            "image" => "logo-kbkm-profile.png"
+                        ]
+                    ]
+                ],
+                "showNextCard" => !1
+            ],
+        ];
+
+        array_push($opening, $narasi);
 
         return response()->json($opening);
     }
