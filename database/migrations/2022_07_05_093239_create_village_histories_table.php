@@ -24,6 +24,8 @@ class CreateVillageHistoriesTable extends Migration
             $table->string('video_etc')->nullable();
             $table->double('lat')->nullable();
             $table->double('long')->nullable();
+            $table->string('type')->default('video');
+            $table->text('content')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

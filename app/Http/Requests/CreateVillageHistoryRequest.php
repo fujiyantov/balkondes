@@ -59,6 +59,13 @@ class CreateVillageHistoryRequest extends FormRequest
                 'required',
                 'numeric'
             ],
+            'type' => [
+                'required',
+                'string'
+            ],
+            'content' => [
+                'string'
+            ],
         ];
     }
 }

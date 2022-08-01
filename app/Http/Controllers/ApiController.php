@@ -300,7 +300,7 @@ class ApiController extends Controller
             array_push($opening, $villages);
 
             $j = 1;
-            foreach ($item->culture as $val) {
+            foreach ($item->culture->where('type', 'video') as $val) {
 
                 $imageLinkCulture = Storage::url('/assets/villages/images/' . $val->image);
                 if (substr($val->image, 0, 5) == 'https') {
@@ -708,12 +708,14 @@ class ApiController extends Controller
                 $culture = [
                     "next" => "/",
                     "prev" => "/",
-                    "type" => "video",
+                    // "type" => "video",
+                    "type" => $val->type,
                     "level" => 2,
                     "json" => "14_water_offering.json",
                     "parent" => "culture",
                     "url" => "/",
                     "content" => [
+                        "storyID" => $val->id,
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
                         "description" => $val->description,

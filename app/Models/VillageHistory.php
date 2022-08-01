@@ -19,5 +19,7 @@ class VillageHistory extends Model
         'video_id',
         'lat',
         'long',
+        'type',
+        'content',
     ];
 }

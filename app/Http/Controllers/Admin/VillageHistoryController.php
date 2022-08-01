@@ -157,6 +157,8 @@ class VillageHistoryController extends Controller
         $village->video_etc = $data['video_etc'];
         $village->lat = $data['lat'];
         $village->long = $data['long'];
+        $village->type = $data['type'];
+        $village->content = $data['content'];
 
         if (isset($data['is_published'])) {
             $village->is_published = $data['is_published'];

@@ -75,6 +75,16 @@
             display: inline-block;
             float: left;
         }
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 300px;
+        }
+
+        .ck-content .image {
+            /* block images */
+            max-width: 80%;
+            margin: 20px auto;
+        }
     </style>
 @endsection
 
@@ -164,6 +174,23 @@
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
+                                        <label class="small mb-1" for="name">Type</label>
+                                        <select class="form-select" name="type" aria-label="Default select example">
+                                            <option value="video">video</option>
+                                            <option value="story">story</option>
+                                        </select>
+                                        @error('type')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Village</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
                                             @foreach ($villages as $village)
@@ -224,8 +251,8 @@
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video ID</label>
-                                        <input class="form-control @error('video_id') is-invalid @enderror" name="video_id"
-                                            type="text" value="{{ old('video_id') }}" required />
+                                        <input class="form-control @error('video_id') is-invalid @enderror"
+                                            name="video_id" type="text" value="{{ old('video_id') }}" required />
                                         @error('video_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -238,8 +265,8 @@
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video VR</label>
-                                        <input class="form-control @error('video_vr') is-invalid @enderror" name="video_vr"
-                                            type="text" value="{{ old('video_vr') }}" required />
+                                        <input class="form-control @error('video_vr') is-invalid @enderror"
+                                            name="video_vr" type="text" value="{{ old('video_vr') }}" required />
                                         @error('video_vr')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -262,6 +289,20 @@
                                     </div>
                                 </div>
 
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="name">Content Story</label>
+                                        <textarea id="editor" class="form-control @error('content') is-invalid @enderror" cols="30" rows="5"
+                                            name="content" value="{{ old('content') }}"></textarea>
+                                        @error('content')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
                                     Add New Culture History
@@ -277,6 +318,14 @@
 @endsection
 
 @section('script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3qmSEZlR-lTVQkqxUsBoM8IdoL4QkCA&v=3.exp&libraries=places">
     </script>
