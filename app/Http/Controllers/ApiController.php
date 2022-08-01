@@ -7,6 +7,7 @@ use App\Models\Trip;
 use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
@@ -716,7 +717,7 @@ class ApiController extends Controller
                     "url" => "/",
                     "content" => [
                         "storyID" => $val->id,
-                        "urlTarget" => "http://127.0.0.1:8000",
+                        "urlTarget" => "http://127.0.0.1:8000/" . $val->id . "/" . Str::slug($val->name),
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
                         "description" => $val->description,
