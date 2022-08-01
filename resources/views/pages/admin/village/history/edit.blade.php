@@ -312,7 +312,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Content Story</label>
                                         <textarea id="editor" class="form-control @error('content') is-invalid @enderror" cols="30" rows="5"
-                                            name="content" value="{{ $villages->content }}"></textarea>
+                                            name="content">{{ $villages->content }}</textarea>
                                         @error('content')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -420,14 +420,14 @@
                 searchBox.setBounds(bounds);
             });
 
-            if (navigator.geolocation) {
+            /* if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     map.setCenter(initialLocation);
                     $('.lat').val(position.coords.latitude);
                     $('.lon').val(position.coords.longitude);
                 });
-            }
+            } */
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
