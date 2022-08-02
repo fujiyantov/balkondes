@@ -75,6 +75,7 @@
             display: inline-block;
             float: left;
         }
+
         .ck-editor__editable[role="textbox"] {
             /* editing area */
             min-height: 300px;
@@ -141,6 +142,13 @@
                                                 ame="location" type="text">
                                             <div id="map-canvas"></div>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-primary set-current" id="current-location">Set Your
+                                            Location</button>
                                     </div>
                                 </div>
 
@@ -404,15 +412,81 @@
             });
 
             if (navigator.geolocation) {
+                $('#current-location').prop('disabled', true)
+                $('#current-location').text('loading...')
                 navigator.geolocation.getCurrentPosition(function(position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
                     map.setCenter(initialLocation);
+                    map.setZoom(16);
+
+                    var iconMap = '{{ asset('/assets/icons/map.png') }}';
+                    var getImage = {
+                        url: iconMap,
+                        size: new google.maps.Size(75, 75),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.  
+                    var getMarker = new google.maps.Marker({
+                        map: map,
+                        icon: getImage,
+                        position: initialLocation
+                    });
                     $('.lat').val(position.coords.latitude);
                     $('.lon').val(position.coords.longitude);
+
+                    $('#current-location').text('Set Your Location')
+                    $('#current-location').prop('disabled', false)
                 });
+            } else {
+                alert('Mohon aktifkan permission lokasi pada broweser Anda')
             }
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
+
+        $('.set-current').on('click', function(e) {
+            e.preventDefault();
+
+            if (navigator.geolocation) {
+                $('#current-location').prop('disabled', true)
+                $('#current-location').text('loading...')
+                
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords
+                        .longitude);
+
+                    map.setCenter(initialLocation);
+                    map.setZoom(16);
+
+                    var iconMap = '{{ asset('/assets/icons/map.png') }}';
+                    var getImage = {
+                        url: iconMap,
+                        size: new google.maps.Size(75, 75),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.  
+                    var getMarker = new google.maps.Marker({
+                        map: map,
+                        icon: getImage,
+                        position: initialLocation
+                    });
+
+                    $('.lat').val(position.coords.latitude);
+                    $('.lon').val(position.coords.longitude);
+                    $('#current-location').text('Set Your Location')
+                    $('#current-location').prop('disabled', false)
+                });
+
+            } else {
+                alert('Mohon aktifkan permission lokasi pada broweser Anda')
+            }
+        });
     </script>
 @endsection

@@ -136,6 +136,13 @@
                                 </div>
 
                                 <div class="row gx-3 mb-3">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-primary set-current" id="current-location">Set Your
+                                            Location</button>
+                                    </div>
+                                </div>
+
+                                <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-3">
                                         <label class="small mb-1" for="name">Latitude</label>
@@ -373,11 +380,13 @@
         var infowindow = new google.maps.InfoWindow();
         var marker;
         var g_err = 0;
+        var iconMap = '{{ asset('/assets/icons/map.png') }}';
 
         function initialize() {
 
             var markers = [];
             var mapOptions = {
+                url: iconMap,
                 zoom: 12,
                 center: new google.maps.LatLng({{ $products->lat }}, {{ $products->long }}),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -385,6 +394,23 @@
                 streetViewControl: false
             };
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            var location = new google.maps.LatLng({{ $products->lat }}, {{ $products->long }});
+
+            var getImage = {
+                url: iconMap,
+                size: new google.maps.Size(75, 75),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.  
+            var getMarker = new google.maps.Marker({
+                map: map,
+                icon: getImage,
+                position: location
+            });
 
             // Create the search box and link it to the UI element.  
             var input = document.getElementById('pac-input');
@@ -450,6 +476,46 @@
                 });
             } */
         }
+
+        $('.set-current').on('click', function(e) {
+            e.preventDefault();
+
+            if (navigator.geolocation) {
+                $('#current-location').prop('disabled', true)
+                $('#current-location').text('loading...')
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords
+                        .longitude);
+
+                    map.setCenter(initialLocation);
+                    map.setZoom(16);
+
+                    var getImage = {
+                        url: iconMap,
+                        size: new google.maps.Size(75, 75),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+
+                    // Create a marker for each place.  
+                    var getMarker = new google.maps.Marker({
+                        map: map,
+                        icon: getImage,
+                        position: initialLocation
+                    });
+
+                    $('.lat').val(position.coords.latitude);
+                    $('.lon').val(position.coords.longitude);
+                    $('#current-location').text('Set Your Location')
+                    $('#current-location').prop('disabled', false)
+                });
+
+            } else {
+                alert('Mohon aktifkan permission lokasi pada broweser Anda')
+            }
+        });
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
