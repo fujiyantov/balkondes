@@ -13,10 +13,15 @@
             </a> --}}
             <!-- Sidenav Link (Messages)-->
             <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-            <a class="nav-link" href="#!">
+            <a class="nav-link" {{ request()->is('admin/transactions') ? 'active' : '' }}
+                href="{{ route('transactions.index') }}">
                 <div class="nav-link-icon"><i data-feather="shopping-cart"></i></div>
                 Transaction
-                <span class="badge bg-warning-soft text-warning ms-auto">2 New!</span>
+                @php
+                    $notif  = notifCount()
+                @endphp
+
+                <span class="badge bg-warning text-dark ms-auto">{{ $notif }} @if($notif > 0) New! @endif</span>
             </a>
 
             @if (Auth::User()->roles->first()->id == 1 ||

@@ -137,7 +137,7 @@ class VillageController extends Controller
 
         if ($request->hasFile('image')) {
             $data['image'] = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('assets/villages/images', $data['image']);
+            $request->file('image')->storeAs('assets/villages/images/', $data['image']);
         }
 
         $village->name = $data['name'];

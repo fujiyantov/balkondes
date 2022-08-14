@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TripCategoryController;
 use App\Http\Controllers\Admin\VillageHistoryController;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::prefix('admin')
         Route::resource('culture-histories', VillageHistoryController::class);
         Route::resource('products', ProductController::class);
         Route::resource('trips', TripController::class);
+        Route::resource('transactions', TransactionController::class);
 
 
         // USER
