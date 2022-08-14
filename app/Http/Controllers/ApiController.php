@@ -303,7 +303,7 @@ class ApiController extends Controller
             array_push($opening, $villages);
 
             $j = 1;
-            foreach ($item->culture->where('type', 'video') as $val) {
+            foreach ($item->culture as $val) {
 
                 $imageLinkCulture = Storage::url('/assets/villages/images/' . $val->image);
                 if (substr($val->image, 0, 5) == 'https') {
