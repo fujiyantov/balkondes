@@ -273,6 +273,8 @@ class ApiController extends Controller
                 "parent" => "culture",
                 "url" => "/",
                 "content" => [
+                    "storyID" => $item->id,
+                    "urlTarget" => "http://story.fujiyantov.id/" . $item->id . "/" . Str::slug($item->name),
                     "name" => $item->name,
                     "number" => 1 . '.' . $i,
                     "description" => $item->description,
@@ -317,6 +319,8 @@ class ApiController extends Controller
                     "parent" => "culture",
                     "url" => "culture/cave-spring",
                     "content" => [
+                        "storyID" => $val->id,
+                        "urlTarget" => "http://story.fujiyantov.id/" . $val->id . "/" . Str::slug($val->name),
                         "name" => $val->name,
                         "number" => 1 . '.' . $i . '.' . $j++,
                         "description" => $val->description,
