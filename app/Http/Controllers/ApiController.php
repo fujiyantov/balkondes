@@ -28,7 +28,7 @@ class ApiController extends Controller
                     "no-auto-next-button" => true
                 ],
                 "titles" => [
-                    [
+                    /* [
                         "id" => "1",
                         "start" => "4",
                         "end" => "7.5"
@@ -42,7 +42,7 @@ class ApiController extends Controller
                         "id" => "2",
                         "start" => "84.5",
                         "end" => "300"
-                    ]
+                    ] */
                 ]
             ],
         ];
