@@ -90,6 +90,11 @@
                     <div class="nav-link-icon"><i data-feather="user"></i></div>
                     Account
                 </a>
+                <a class="nav-link {{ request()->is('admin/banks*') ? 'active' : '' }}"
+                    href="{{ route('banks.index') }}">
+                    <div class="nav-link-icon"><i data-feather="credit-card"></i></div>
+                    Bank
+                </a>
                 <a class="nav-link {{ request()->is('admin/cores*') ? 'active' : '' }}"
                     href="{{ route('cores.index') }}">
                     <div class="nav-link-icon"><i data-feather="settings"></i></div>
