@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title')
-    Edit Trip
+    Edit Travel
 @endsection
 
 @section('stylesheet')
     <style>
         #map {
-            height: 300px;
+            height: 500px;
             width: 100%;
             margin: auto auto;
             border: solid 2px #0d6b7a;
@@ -87,13 +87,13 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="shopping-bag"></i></div>
-                                Edit Trip
+                                Edit Travel
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ route('trips.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Trip
+                                Kembali
                             </a>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Informasi Trip</div>
+                        <div class="card-header">Informasi Travel</div>
                         <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -126,9 +126,9 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div id="map" class="">
-                                            <input id="pac-input" class="controls" placeholder="insert the location"
+                                            <input id="pac-input" class="controls" placeholder="type the location"
                                                 ame="location" type="text">
                                             <div id="map-canvas"></div>
                                         </div>
@@ -144,7 +144,7 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Latitude</label>
                                         <input class="form-control lat @error('lat') is-invalid @enderror" name="lat"
                                             type="text" value="{{ $trips->lat }}" required />
@@ -156,7 +156,7 @@
                                     </div>
 
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Longitude</label>
                                         <input class="form-control lon @error('long') is-invalid @enderror" name="long"
                                             type="text" value="{{ $trips->long }}" required />
@@ -171,8 +171,8 @@
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Village</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Pilih Desa</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
                                             @foreach ($villages as $village)
                                                 <option value="{{ $village->id }}"
@@ -190,7 +190,7 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="small mb-1" for="name">Video ID</label>
                                         <input class="form-control @error('video_id') is-invalid @enderror" name="video_id"
                                             type="text" value="{{ $trips->video_id }}" required />
@@ -204,8 +204,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Name Prodcut</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Nama Travel</label>
                                         <input class="form-control @error('name') is-invalid @enderror" name="name"
                                             type="text" value="{{ $trips->name }}" required />
                                         @error('name')
@@ -218,8 +218,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Price</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Harga</label>
                                         <input class="form-control @error('price') is-invalid @enderror" name="price"
                                             type="number" value="{{ $trips->price }}" required />
                                         @error('price')
@@ -232,8 +232,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Category</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Pilih Kategori</label>
                                         <select class="form-select" name="category" aria-label="Default select example">
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}"
@@ -249,7 +249,7 @@
                                 </div>
 
                                 <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         @if (substr($trips->image, 0, 5) == 'https')
                                             <img src="{{ $trips->image }}"
                                                 class="img-thumbnail" alt="image_village">
@@ -262,8 +262,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Banner</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Thumbnail</label>
                                         <input class="form-control @error('image') is-invalid @enderror" name="image"
                                             type="file" value="{{ old('image') }}" />
                                         @error('image')
@@ -275,7 +275,7 @@
                                 </div>
 
                                 <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="row">
                                             @foreach ($trips->gallery as $item)
                                                 <div class="col-md-{{ 12 / $trips->gallery->count() }}">
@@ -289,8 +289,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Image (multiple)</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Gambar (multiple)</label>
                                         <input class="form-control @error('photo') is-invalid @enderror" name="photo[]"
                                             type="file" value="{{ old('photo') }}" required multiple />
                                         @error('photo')
@@ -303,8 +303,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Address</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Alamat</label>
                                         <textarea class="form-control @error('address') is-invalid @enderror" cols="30" rows="5" name="address"
                                             value="{{ old('address') }}" required>{{ $trips->address }}</textarea>
                                         @error('address')
@@ -317,9 +317,9 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Description</label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Deskripsi</label>
+                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="25"
                                             name="description" value="{{ old('description') }}" required>{{ $trips->description }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
@@ -332,9 +332,9 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Additional Information</label>
-                                        <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="5"
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Informasi Tambahan</label>
+                                        <textarea class="form-control @error('additional_information') is-invalid @enderror" cols="30" rows="25"
                                             name="additional_information" value="{{ old('additional_information') }}" required>{{ $trips->additional_information }}</textarea>
                                         @error('additional_information')
                                             <div class="invalid-feedback">
@@ -346,8 +346,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Seller Name</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Nama Penjual</label>
                                         <input class="form-control @error('seller_name') is-invalid @enderror"
                                             name="seller_name" type="text" value="{{ $trips->seller_name }}"
                                             required />
@@ -361,7 +361,7 @@
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
-                                    Add New Trip
+                                    Update Travel
                                 </button>
                             </form>
                         </div>

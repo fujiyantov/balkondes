@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Travel Category
+    Travel Kategori
 @endsection
 
 @section('container')
@@ -15,15 +15,15 @@
                                 <div class="page-header-icon">
                                     <i data-feather="file-text"></i>
                                 </div>
-                                Travel Category
+                                Travel Kategori
                             </h1>
-                            <div class="page-header-subtitle">List Travel Category</div>
+                            <div class="page-header-subtitle">List Travel Kategori</div>
                         </div>
                     </div>
                     <nav class="mt-4 rounded" aria-label="breadcrumb">
                         <ol class="breadcrumb px-3 py-2 rounded mb-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Travel Category</li>
+                            <li class="breadcrumb-item active">Travel Kategori</li>
                         </ol>
                     </nav>
                 </div>
@@ -35,9 +35,9 @@
                 <div class="col-lg-12">
                     <div class="card card-header-actions mb-4">
                         <div class="card-header">
-                            List Travel Category
+                            Daftar Travel Kategori
                             <a class="btn btn-sm btn-primary" href="{{ route('travel-categories.create') }}">
-                                Tambah Travel Category Baru
+                                Tambah Travel Kategori
                             </a>
                         </div>
                         <div class="card-body">
@@ -65,7 +65,7 @@
                                 <thead>
                                     <tr>
                                         <th width="10">No.</th>
-                                        <th>Name</th>
+                                        <th>Nama</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>

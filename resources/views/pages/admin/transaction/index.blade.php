@@ -102,11 +102,17 @@
         @php
             $id = $item->id;
             $date = $item->created_at->format('Y-m-d H:i:s');
-            
+
+            $title = 'undifined';
+
             if ($item->type == 'produk') {
-                $title = $item->product->name;
+                if ($item->product) {
+                    $title = $item->product->name;
+                }
             } else {
-                $title = $item->trip->name;
+                if ($item->trip) {
+                    $title = $item->trip->name;
+                }
             }
             
             $grand_total = number_format($item->grand_total);

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Edit Travel Category
+    Edit Travel Kategori
 @endsection
 
 @section('container')
@@ -13,13 +13,13 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="folder"></i></div>
-                                Edit Travel Category
+                                Edit Travel Kategori
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ route('travel-categories.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Travel Category
+                                Kembali
                             </a>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Informasi Travel Category</div>
+                        <div class="card-header">Informasi Travel Kategori</div>
                         <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -53,7 +53,7 @@
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Name</label>
+                                        <label class="small mb-1" for="name">Nama</label>
                                         <input class="form-control @error('name') is-invalid @enderror" name="name"
                                             type="text" value="{{ $item->name }}" required />
                                         @error('name')
@@ -66,7 +66,7 @@
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
-                                    Update Travel Category
+                                    Update
                                 </button>
                             </form>
                         </div>

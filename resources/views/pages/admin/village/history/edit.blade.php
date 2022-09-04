@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('title')
-    Edit Culture History
+    Edit Cerita Budaya
 @endsection
 
 @section('stylesheet')
     <style>
         #map {
-            height: 300px;
+            height: 500px;
             width: 100%;
             margin: auto auto;
             border: solid 2px #0d6b7a;
@@ -78,7 +78,7 @@
 
         .ck-editor__editable[role="textbox"] {
             /* editing area */
-            min-height: 300px;
+            min-height: 700px;
         }
 
         .ck-content .image {
@@ -98,13 +98,13 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="page-header-icon"><i data-feather="folder"></i></div>
-                                Edit Culture History
+                                Edit Cerita Budaya
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ route('culture-histories.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Culture History
+                                Kembali
                             </a>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Informasi Culture History</div>
+                        <div class="card-header">Informasi Cerita Budaya</div>
                         <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -137,7 +137,7 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div id="map" class="">
                                             <input id="pac-input" class="controls" placeholder="insert the location"
                                                 ame="location" type="text">
@@ -155,7 +155,7 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Latitude</label>
                                         <input class="form-control lat @error('lat') is-invalid @enderror" name="lat"
                                             type="text" value="{{ old('lat') }}" required />
@@ -167,7 +167,7 @@
                                     </div>
 
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Longitude</label>
                                         <input class="form-control lon @error('long') is-invalid @enderror" name="long"
                                             type="text" value="{{ old('long') }}" required />
@@ -182,8 +182,8 @@
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Type</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Kategori</label>
                                         <select class="form-select" name="type" aria-label="Default select example">
                                             <option value="video" @if ($villages->type == 'video') selected @endif>video
                                             </option>
@@ -201,8 +201,8 @@
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Village</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Pilih Desa</label>
                                         <select class="form-select" name="village_id" aria-label="Default select example">
                                             @foreach ($collections as $collection)
                                                 <option value="{{ $collection->id }}"
@@ -221,8 +221,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Name Desa</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Nama Cerita Budaya</label>
                                         <input class="form-control @error('name') is-invalid @enderror" name="name"
                                             type="text" value="{{ $villages->name }}" required />
                                         @error('name')
@@ -234,7 +234,7 @@
                                 </div>
 
                                 <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         @if (substr($villages->image, 0, 5) == 'https')
                                             <img src="{{ $villages->image }}" class="img-thumbnail" alt="image_village">
                                         @else
@@ -245,8 +245,8 @@
                                 </div>
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Image</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Thumbnail</label>
                                         <input class="form-control @error('image') is-invalid @enderror" name="image"
                                             type="file" value="{{ old('image') }}" />
                                         @error('image')
@@ -259,9 +259,9 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Description</label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Deskripsi</label>
+                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="10"
                                             name="description" value="{{ old('description') }}" required>{{ $villages->description }}</textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
@@ -288,7 +288,7 @@
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Video VR</label>
+                                        <label class="small mb-1" for="name">Virtual Tour Link</label>
                                         <input class="form-control @error('video_vr') is-invalid @enderror"
                                             name="video_vr" type="text" value="{{ $villages->video_vr }}" required />
                                         @error('video_vr')
@@ -302,7 +302,7 @@
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Video ETC</label>
+                                        <label class="small mb-1" for="name">Story Map</label>
                                         <input class="form-control @error('video_etc') is-invalid @enderror"
                                             name="video_etc" type="text" value="{{ $villages->video_etc }}"
                                             required />
@@ -317,7 +317,8 @@
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Content Story</label>
+                                        <label class="small mb-1" for="name">Cerita Budaya (untuk kategori
+                                            story)</label>
                                         <textarea id="editor" class="form-control @error('content') is-invalid @enderror" cols="30" rows="5"
                                             name="content">{{ $villages->content }}</textarea>
                                         @error('content')
@@ -330,7 +331,7 @@
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
-                                    Update Culture History
+                                    Update Cerita Budaya
                                 </button>
                             </form>
                         </div>

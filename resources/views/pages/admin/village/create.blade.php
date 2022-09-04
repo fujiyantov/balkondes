@@ -7,7 +7,7 @@
 @section('stylesheet')
     <style>
         #map {
-            height: 300px;
+            height: 500px;
             width: 100%;
             margin: auto auto;
             border: solid 2px #0d6b7a;
@@ -91,9 +91,9 @@
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="{{ route('user.index') }}">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ route('villages.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke Semua Desa
+                                Kembali
                             </a>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div id="map" class="">
                                             <input id="pac-input" class="controls" placeholder="insert the location"
                                                 ame="location" type="text">
@@ -135,14 +135,14 @@
 
                                 <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
-                                        <button class="btn btn-primary set-current" id="current-location">Set Your
+                                        <button class="btn btn-primary set-current" id="current-location">Current
                                             Location</button>
                                     </div>
                                 </div>
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Latitude</label>
                                         <input class="form-control lat @error('lat') is-invalid @enderror" name="lat"
                                             type="text" value="{{ old('lat') }}" required />
@@ -154,7 +154,7 @@
                                     </div>
 
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <label class="small mb-1" for="name">Longitude</label>
                                         <input class="form-control lon @error('long') is-invalid @enderror" name="long"
                                             type="text" value="{{ old('long') }}" required />
@@ -168,10 +168,11 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="small mb-1" for="name">Name Desa</label>
                                         <input class="form-control @error('name') is-invalid @enderror" name="name"
-                                            type="text" value="{{ old('name') }}" required />
+                                            type="text" value="{{ old('name') }}" required
+                                            placeholder="Masukan nama desa" />
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -182,8 +183,8 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Image</label>
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Thumbnail</label>
                                         <input class="form-control @error('image') is-invalid @enderror" name="image"
                                             type="file" value="{{ old('image') }}" required />
                                         @error('image')
@@ -196,9 +197,9 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="name">Description</label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="5"
+                                    <div class="col-md-12">
+                                        <label class="small mb-1" for="name">Deskripsi</label>
+                                        <textarea class="form-control @error('description') is-invalid @enderror" cols="30" rows="20"
                                             name="description" value="{{ old('description') }}" required></textarea>
                                         @error('description')
                                             <div class="invalid-feedback">
@@ -210,10 +211,11 @@
 
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="small mb-1" for="name">Video ID</label>
                                         <input class="form-control @error('video_id') is-invalid @enderror" name="video_id"
-                                            type="text" value="{{ old('video_id') }}" required />
+                                            type="text" value="{{ old('video_id') }}" required
+                                            placeholder="Masukan video id" />
                                         @error('video_id')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -222,7 +224,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row gx-3 mb-3">
+                                {{-- <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video VR</label>
@@ -234,9 +236,9 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="row gx-3 mb-3">
+                                {{-- <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="name">Video ETC</label>
@@ -248,11 +250,11 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">
-                                    Add New Desa
+                                    Submit Desa
                                 </button>
                             </form>
                         </div>
@@ -384,7 +386,7 @@
             if (navigator.geolocation) {
                 $('#current-location').prop('disabled', true)
                 $('#current-location').text('loading...')
-                
+
                 navigator.geolocation.getCurrentPosition(function(position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords
                         .longitude);

@@ -17,13 +17,6 @@
                             </h1>
                             <div class="page-header-subtitle">Administrator Panel</div>
                         </div>
-                        {{-- <div class="col-12 col-xl-auto mt-4">
-                            <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                <span class="input-group-text"><i class="text-primary" data-feather="calendar"></i></span>
-                                <input class="form-control ps-0 pointer" id="litepickerRangePlugin"
-                                    placeholder="Select date range..." />
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -60,7 +53,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="me-3">
-                                        <div class="small">Products</div>
+                                        <div class="small">Produk Budaya</div>
                                         <div class="text-lg fw-bold">{{ $products }}</div>
                                     </div>
                                     <i class="feather-xl" data-feather="shopping-bag"></i>
@@ -77,7 +70,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="me-3">
-                                        <div class="text-white-75 small">Travel</div>
+                                        <div class="text-white-75 small">Travel Wisata</div>
                                         <div class="text-lg fw-bold">{{ $trips }}</div>
                                     </div>
                                     <i class="feather-xl text-white-50" data-feather="navigation"></i>
@@ -96,7 +89,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="me-3">
-                                        <div class="small">Villages</div>
+                                        <div class="small">Desa</div>
                                         <div class="text-lg fw-bold">{{ $villages }}</div>
                                     </div>
                                     <i class="feather-xl" data-feather="folder"></i>
@@ -113,7 +106,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="me-3">
-                                        <div class="text-white-75 small">Cultures</div>
+                                        <div class="text-white-75 small">Cerita Budaya</div>
                                         <div class="text-lg fw-bold">{{ $cultures }}</div>
                                     </div>
                                     <i class="feather-xl text-white-50" data-feather="clock"></i>

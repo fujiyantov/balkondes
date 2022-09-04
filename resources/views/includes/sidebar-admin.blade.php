@@ -16,7 +16,7 @@
             <a class="nav-link" {{ request()->is('admin/transactions') ? 'active' : '' }}
                 href="{{ route('transactions.index') }}">
                 <div class="nav-link-icon"><i data-feather="shopping-cart"></i></div>
-                Transaction
+                Transaksi
                 @php
                     $notif  = notifCount()
                 @endphp
@@ -41,20 +41,20 @@
                 <a class="nav-link {{ request()->is('admin/village*') ? 'active' : '' }}"
                     href="{{ route('villages.index') }}">
                     <div class="nav-link-icon"><i data-feather="folder"></i></div>
-                    Villages
+                    Desa
                 </a>
 
                 <a class="nav-link {{ request()->is('admin/culture-histories*') ? 'active' : '' }}"
                     href="{{ route('culture-histories.index') }}">
                     <div class="nav-link-icon"><i data-feather="clock"></i></div>
-                    Culture History
+                    Cerita Budaya
                 </a>
 
                 @if (Auth::User()->roles->first()->id != 3)
                     <a class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}"
                         href="{{ route('products.index') }}">
                         <div class="nav-link-icon"><i data-feather="shopping-bag"></i></div>
-                        Products
+                        Produk
                     </a>
                     <a class="nav-link {{ request()->is('admin/trips*') ? 'active' : '' }}"
                         href="{{ route('trips.index') }}">
@@ -69,31 +69,31 @@
                 <a class="nav-link {{ request()->is('admin/product-categories*') ? 'active' : '' }}"
                     href="{{ route('product-categories.index') }}">
                     <div class="nav-link-icon"><i data-feather="folder"></i></div>
-                    Product Category
+                    Produk Kategori
                 </a>
                 <a class="nav-link {{ request()->is('admin/travel-categories*') ? 'active' : '' }}"
                     href="{{ route('travel-categories.index') }}">
                     <div class="nav-link-icon"><i data-feather="folder"></i></div>
-                    Travel Category
+                    Travel Kategori
                 </a>
                 <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                     href="{{ route('user.index') }}">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                     Data User
                 </a>
+                <a class="nav-link" target="_blank" href="/admin/management">
+                    <div class="nav-link-icon"><i data-feather="sliders"></i></div>
+                    Role User
+                </a>
                 <a class="nav-link {{ request()->is('admin/setting*') ? 'active' : '' }}"
                     href="{{ route('setting.index') }}">
                     <div class="nav-link-icon"><i data-feather="user"></i></div>
                     Account
                 </a>
-                <a class="nav-link" target="_blank" href="/admin/management">
-                    <div class="nav-link-icon"><i data-feather="sliders"></i></div>
-                    Settings
-                </a>
                 <a class="nav-link {{ request()->is('admin/cores*') ? 'active' : '' }}"
                     href="{{ route('cores.index') }}">
                     <div class="nav-link-icon"><i data-feather="settings"></i></div>
-                    Core
+                    Settings
                 </a>
             @endif
         </div>

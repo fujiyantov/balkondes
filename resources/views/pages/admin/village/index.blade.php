@@ -6,13 +6,11 @@
 
 @section('stylesheet')
     <style>
-        .bg-header-custom{
+        .bg-header-custom {
             background:
-            linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.5)
-            ),
-            url('https://dm.fujiyantov.id/storage/assets/villages/images/1657983079.jpeg');
+                linear-gradient(rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)),
+                url('https://dm.fujiyantov.id/storage/assets/villages/images/1657983079.jpeg');
             /* height: 100%; */
             background-position: center;
             background-repeat: no-repeat;
@@ -32,15 +30,15 @@
                                 <div class="page-header-icon">
                                     <i data-feather="file-text"></i>
                                 </div>
-                                Village
+                                Desa
                             </h1>
-                            <div class="page-header-subtitle">List Village</div>
+                            <div class="page-header-subtitle">Daftar Desa</div>
                         </div>
                     </div>
                     <nav class="mt-4 rounded" aria-label="breadcrumb">
                         <ol class="breadcrumb px-3 py-2 rounded mb-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Village</li>
+                            <li class="breadcrumb-item active">Desa</li>
                         </ol>
                     </nav>
                 </div>
@@ -52,9 +50,9 @@
                 <div class="col-lg-12">
                     <div class="card card-header-actions mb-4">
                         <div class="card-header">
-                            List Village
+                            Daftar Desa
                             <a class="btn btn-sm btn-primary" href="{{ route('villages.create') }}">
-                                Tambah Village Baru
+                                Tambah Desa
                             </a>
                         </div>
                         <div class="card-body">
@@ -82,8 +80,8 @@
                                 <thead>
                                     <tr>
                                         <th width="10">No.</th>
-                                        <th>Image</th>
-                                        <th>Name</th>
+                                        <th>Thumbnail</th>
+                                        <th>Nama Desa</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -113,7 +111,8 @@
                 },
                 {
                     data: 'image',
-                    name: 'image'
+                    name: 'image',
+                    width: '15%',
                 },
                 {
                     data: 'name',

@@ -33,7 +33,7 @@ class TransactionController extends Controller
                     }
                 })
                 ->addColumn('created_at', function ($item) {
-                    return Carbon::parse($item->created_at)->toDateTimeString();
+                    return $item->created_at->format('Y-m-d H:i');
                 })
                 ->addColumn('name', function ($item) {
                     return ucwords($item->name);
@@ -42,14 +42,18 @@ class TransactionController extends Controller
                     return 'Rp ' . number_format($item->grand_total);
                 })
                 ->addColumn('product', function ($item) {
-                    $name = '';
+                    $name = 'undifined';
 
                     if ($item->type == 'produk') {
-                        $name = $item->product->name;
+                        if (isset($item->product)) {
+                            $name = $item->product->name;
+                        }
                     }
 
                     if ($item->type == 'travel') {
-                        $name = $item->trip->name;
+                        if (isset($item->trip)) {
+                            $name = $item->trip->name;
+                        }
                     }
 
                     return $name;

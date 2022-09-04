@@ -31,9 +31,9 @@ class VillageController extends Controller
                         </a>
                         <form action="' . route('villages.destroy', $item->id) . '" method="POST" onsubmit="return confirm(' . "'Anda akan menghapus item ini secara permanen dari situs anda?'" . ')">
                             ' . method_field('delete') . csrf_field() . '
-                            <button class="btn btn-danger btn-xs">
+                            <a class="btn btn-danger btn-xs">
                                 <i class="far fa-trash-alt"></i> &nbsp; Hapus
-                            </button>
+                            </a>
                         </form>
                     ';
                 })

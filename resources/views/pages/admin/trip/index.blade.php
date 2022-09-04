@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Trip
+    Travel
 @endsection
 
 @section('stylesheet')
@@ -32,15 +32,15 @@
                                 <div class="page-header-icon">
                                     <i data-feather="file-text"></i>
                                 </div>
-                                Trip
+                                Travel
                             </h1>
-                            <div class="page-header-subtitle">List Trip</div>
+                            <div class="page-header-subtitle">Daftar Travel</div>
                         </div>
                     </div>
                     <nav class="mt-4 rounded" aria-label="breadcrumb">
                         <ol class="breadcrumb px-3 py-2 rounded mb-0">
                             <li class="breadcrumb-item"><a href="{{ route('admin-dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Trip</li>
+                            <li class="breadcrumb-item active">Travel</li>
                         </ol>
                     </nav>
                 </div>
@@ -54,7 +54,7 @@
                         <div class="card-header">
                             List Trip
                             <a class="btn btn-sm btn-primary" href="{{ route('trips.create') }}">
-                                Tambah Trip Baru
+                                Tambah Travel
                             </a>
                         </div>
                         <div class="card-body">
@@ -82,11 +82,11 @@
                                 <thead>
                                     <tr>
                                         <th width="10">No.</th>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>City</th>
-                                        <th>Price</th>
-                                        <th>Seller</th>
+                                        <th>Thumbnail</th>
+                                        <th>Nama</th>
+                                        <th>Desa</th>
+                                        <th>Harga</th>
+                                        <th>Penjual</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
