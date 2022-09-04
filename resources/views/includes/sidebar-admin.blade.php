@@ -76,6 +76,11 @@
                     <div class="nav-link-icon"><i data-feather="folder"></i></div>
                     Travel Kategori
                 </a>
+                <a class="nav-link {{ request()->is('admin/sections*') ? 'active' : '' }}"
+                    href="{{ route('sections.index') }}">
+                    <div class="nav-link-icon"><i data-feather="folder"></i></div>
+                    Section
+                </a>
                 <a class="nav-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                     href="{{ route('user.index') }}">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>

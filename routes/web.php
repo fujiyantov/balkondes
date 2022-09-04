@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TripCategoryController;
 use App\Http\Controllers\Admin\VillageHistoryController;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,7 @@ Route::prefix('admin')
         Route::resource('user', UserController::class);
         Route::resource('cores', CoreController::class);
         Route::resource('banks', BankController::class);
+        Route::resource('sections', SectionController::class);
         Route::resource('product-categories', ProductCategoryController::class);
         Route::resource('travel-categories', TripCategoryController::class);
         Route::resource('setting', SettingController::class, [
