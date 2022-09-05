@@ -320,7 +320,7 @@ class ApiController extends Controller
                     "url" => "culture/cave-spring",
                     "content" => [
                         "storyID" => $val->id,
-                        "urlTarget" => "http://story.fujiyantov.id/" . $val->id . "/" . Str::slug($val->name),
+                        "urlTarget" => "http://story.borobudurside.com/" . $val->id . "/" . Str::slug($val->name),
                         "name" => $val->name,
                         "number" => 1 . '.' . $i . '.' . $j++,
                         "description" => $val->description,
@@ -721,7 +721,7 @@ class ApiController extends Controller
                     "url" => "/",
                     "content" => [
                         "storyID" => $val->id,
-                        "urlTarget" => $val->type == 'story' ? "http://story.fujiyantov.id/" . $val->id . "/" . Str::slug($val->name) : $val->id,
+                        "urlTarget" => $val->type == 'story' ? "http://story.borobudurside.com/" . $val->id . "/" . Str::slug($val->name) : $val->id,
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
                         "description" => $val->description,
