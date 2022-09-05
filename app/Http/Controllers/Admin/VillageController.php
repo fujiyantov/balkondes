@@ -147,8 +147,8 @@ class VillageController extends Controller
             $village->image = $data['image'];
         }
 
-        $village->video_vr = $data['video_vr'];
-        $village->video_id = $data['video_id'];
+        $village->video_vr = $data['video_vr'] ?? null;
+        $village->video_id = $data['video_id'] ?? null;
         $village->lat = $data['lat'];
         $village->long = $data['long'];
 
