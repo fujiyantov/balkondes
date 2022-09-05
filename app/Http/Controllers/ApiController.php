@@ -284,8 +284,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => $item->lat,
-                        "lng" => $item->long
+                        "lat" => (int)$item->lat,
+                        "lng" => (int)$item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -330,8 +330,8 @@ class ApiController extends Controller
                         "no-auto-next-button" => false,
                         "powered-by-earch" => !0,
                         "mapCoord" => [
-                            "lat" => $val->lat,
-                            "lng" => $val->long
+                            "lat" => (int)$val->lat,
+                            "lng" => (int)$val->long
                         ],
                         "mapIcon" => "map-world.png",
                         "titlecard" => [
@@ -404,8 +404,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => $item->lat,
-                        "lng" => $item->long
+                        "lat" => (int)$item->lat,
+                        "lng" => (int)$item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -477,8 +477,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => $item->lat,
-                        "lng" => $item->long
+                        "lat" => (int)$item->lat,
+                        "lng" => (int)$item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -684,8 +684,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => $item->lat,
-                        "lng" => $item->long
+                        "lat" => (int)$item->lat,
+                        "lng" => (int)$item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -731,8 +731,8 @@ class ApiController extends Controller
                         "no-auto-next-button" => false,
                         "powered-by-earch" => !0,
                         "mapCoord" => [
-                            "lat" => $val->lat,
-                            "lng" => $val->long
+                            "lat" => (int)$val->lat,
+                            "lng" => (int)$val->long
                         ],
                         "mapIcon" => "map-world.png",
                         "titlecard" => [
