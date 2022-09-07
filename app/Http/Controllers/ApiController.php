@@ -320,7 +320,9 @@ class ApiController extends Controller
                     "url" => "culture/cave-spring",
                     "content" => [
                         "storyID" => $val->id,
-                        "urlTarget" => "http://story.borobudurside.com/" . $val->id . "/" . Str::slug($val->name),
+                        "urlTarget" => $val->type == 'story' ? "http://story.borobudurside.com/" . $val->id . "/" . Str::slug($val->name) : $val->id,
+                        "urlTargetStoryMap" => $val->type == 'story_map' ? $val->video_etc : null,
+                        "urlTargetVirtualTour" => $val->type == 'virtual_tour' ? $val->video_vr : null,
                         "name" => $val->name,
                         "number" => 1 . '.' . $i . '.' . $j++,
                         "description" => $val->description,
@@ -722,6 +724,8 @@ class ApiController extends Controller
                     "content" => [
                         "storyID" => $val->id,
                         "urlTarget" => $val->type == 'story' ? "http://story.borobudurside.com/" . $val->id . "/" . Str::slug($val->name) : $val->id,
+                        "urlTargetStoryMap" => $val->type == 'story_map' ? $val->video_etc : null,
+                        "urlTargetVirtualTour" => $val->type == 'virtual_tour' ? $val->video_vr : null,
                         "name" => $val->name,
                         "number" => $i . '.' . $j++,
                         "description" => $val->description,
