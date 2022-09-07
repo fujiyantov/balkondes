@@ -23,8 +23,8 @@ class ApiController extends Controller
                 "content" => [
                     "name" => "Welcome to Borobudur",
                     "number" => "01",
-                    "videoId" => "X8K0rGf7rq4",
-                    "mobileVideoId" => "X8K0rGf7rq4",
+                    "videoId" => "nGfKZRvlPkM",
+                    "mobileVideoId" => "nGfKZRvlPkM",
                     "no-auto-next-button" => true
                 ],
                 "titles" => [
