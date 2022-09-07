@@ -211,7 +211,7 @@
                                             @foreach ($collections as $collection)
                                                 <option value="{{ $collection->id }}"
                                                     @if ($collection->id == $villages->village_id) selected @endif>
-                                                    {{ $villages->name }}
+                                                    {{ $collection->name }}
                                                 </option>
                                             @endforeach
                                         </select>
