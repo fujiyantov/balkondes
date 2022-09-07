@@ -189,6 +189,10 @@
                                             </option>
                                             <option value="story" @if ($villages->type == 'story') selected @endif>story
                                             </option>
+                                            <option value="story_map" @if ($villages->type == 'story_map') selected @endif>story map
+                                            </option>
+                                            <option value="virtual_tour" @if ($villages->type == 'virtual_tour') selected @endif>virtual tour
+                                            </option>
                                         </select>
                                         @error('type')
                                             <div class="invalid-feedback">
