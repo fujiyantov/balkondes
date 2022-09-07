@@ -291,7 +291,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "KBKM",
+                                "name" => "Kemah Budaya Kaum Muda",
                                 "image" => "logo-kbkm-profile.png"
                             ]
                         ]
@@ -337,7 +337,7 @@ class ApiController extends Controller
                         "titlecard" => [
                             "narrators" => [
                                 [
-                                    "name" => "KBKM",
+                                    "name" => "Kemah Budaya Kaum Muda",
                                     "image" => "logo-kbkm-profile.png"
                                 ]
                             ]
@@ -411,7 +411,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "KBKM",
+                                "name" => "Kemah Budaya Kaum Muda",
                                 "image" => "logo-kbkm-profile.png"
                             ]
                         ]
@@ -484,7 +484,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "KBKM",
+                                "name" => "Kemah Budaya Kaum Muda",
                                 "image" => "logo-kbkm-profile.png"
                             ]
                         ]
@@ -691,7 +691,7 @@ class ApiController extends Controller
                     "titlecard" => [
                         "narrators" => [
                             [
-                                "name" => "KBKM",
+                                "name" => "Kemah Budaya Kaum Muda",
                                 "image" => "logo-kbkm-profile.png"
                             ]
                         ]
@@ -738,7 +738,7 @@ class ApiController extends Controller
                         "titlecard" => [
                             "narrators" => [
                                 [
-                                    "name" => "KBKM",
+                                    "name" => "Kemah Budaya Kaum Muda",
                                     "image" => "logo-kbkm-profile.png"
                                 ]
                             ]
@@ -778,7 +778,7 @@ class ApiController extends Controller
                 "titlecard" => [
                     "narrators" => [
                         [
-                            "name" => "KBKM",
+                            "name" => "Kemah Budaya Kaum Muda",
                             "image" => "logo-kbkm-profile.png"
                         ]
                     ]
