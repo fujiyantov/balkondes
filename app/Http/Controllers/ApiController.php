@@ -624,8 +624,8 @@ class ApiController extends Controller
                 "type" => "video",
                 "level" => 1,
                 "json" => "01_culture.json",
-                "parent" => "0",
-                "url" => "0",
+                "parent" => "culture",
+                "url" => "culture",
                 "content" => [
                     "name" => $item->name,
                     "number" => $i,
