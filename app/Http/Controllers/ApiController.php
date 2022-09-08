@@ -605,10 +605,11 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => $i,
                     "description" => $item->description,
-                    "icons" => ["culture"],
+                    "icons" => ["village"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
-                    "no-auto-next-button" => false,
+                    // "no-auto-next-button" => false,
+                    "no-auto-next-button" => true,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
                         "lat" => (double)$item->lat,
@@ -623,7 +624,7 @@ class ApiController extends Controller
                             ]
                         ]
                     ],
-                    "showNextCard" => !1
+                    // "showNextCard" => !1
                 ]
             ];
 
