@@ -203,7 +203,7 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => 1 . '.' . $i,
                     "description" => $item->description,
-                    "icons" => ["temple"],
+                    "icons" => ["village"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => false,
