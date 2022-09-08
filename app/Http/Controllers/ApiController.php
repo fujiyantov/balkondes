@@ -153,7 +153,19 @@ class ApiController extends Controller
         $products = [];
         $trips = [];
 
-        $opening = array_merge($intro, $map, $exp, $villages, $products, $trips);
+        $menu_acc = [
+            "menu--culture" => [
+                "type" => "menu",
+                "level" => 4,
+                "menu" => "full",
+                "card" => "culture",
+                "content" => [
+                    "name" => "Menu"
+                ]
+            ],
+        ];
+
+        $opening = array_merge($intro, $map, $exp, $menu_acc, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
@@ -190,13 +202,13 @@ class ApiController extends Controller
             }
 
             $villages = [
-                "next" => "/",
-                "prev" => "/",
+                "next" => "menu--culture",
+                // "prev" => "/",
                 "type" => "video",
                 "level" => 2,
-                "json" => "14_water_offering.json",
+                "json" => "01_culture.json",
                 "parent" => "culture",
-                "url" => "/",
+                "url" => "culture",
                 "content" => [
                     // "storyID" => $item->id,
                     // "urlTarget" => "http://story.fujiyantov.id/" . $item->id . "/" . Str::slug($item->name),
@@ -613,7 +625,7 @@ class ApiController extends Controller
                 "level" => 1,
                 "json" => "01_culture.json",
                 "parent" => "culture",
-                "url" => "/",
+                "url" => "culture",
                 "content" => [
                     "name" => $item->name,
                     "number" => $i,
