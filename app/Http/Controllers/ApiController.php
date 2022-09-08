@@ -152,13 +152,13 @@ class ApiController extends Controller
         $villages = [];
         $products = [];
         $trips = [];
-        
+
         $opening = array_merge($intro, $map, $exp, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
 
-        /* $menu1 = [
+            /* $menu1 = [
             "type" => "video",
             "level" => 1,
             "url" => "/",
@@ -209,8 +209,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => (double)$item->lat,
-                        "lng" => (double)$item->long
+                        "lat" => (float) $item->lat,
+                        "lng" => (float) $item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -257,8 +257,8 @@ class ApiController extends Controller
                         "no-auto-next-button" => false,
                         "powered-by-earch" => !0,
                         "mapCoord" => [
-                            "lat" => (double)$val->lat,
-                            "lng" => (double)$val->long
+                            "lat" => (float) $val->lat,
+                            "lng" => (float) $val->long
                         ],
                         "mapIcon" => "map-world.png",
                         "titlecard" => [
@@ -307,7 +307,7 @@ class ApiController extends Controller
         array_push($opening, $menu2); */
 
         foreach ($itemProducts as $item) {
-            
+
             $imageLink = Storage::url('/assets/products/images/' . $item->image);
             if (substr($item->image, 0, 5) == 'https') {
                 $imageLink = $item->image;
@@ -331,8 +331,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => (double)$item->lat,
-                        "lng" => (double)$item->long
+                        "lat" => (float) $item->lat,
+                        "lng" => (float) $item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -404,8 +404,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => false,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => (double)$item->lat,
-                        "lng" => (double)$item->long
+                        "lat" => (float) $item->lat,
+                        "lng" => (float) $item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -582,7 +582,19 @@ class ApiController extends Controller
         $products = [];
         $trips = [];
 
-        $opening = array_merge($intro, $map, $villages, $products, $trips);
+        $menu_acc = [
+            "menu--culture" => [
+                "type" => "menu",
+                "level" => 4,
+                "menu" => "full",
+                "card" => "culture",
+                "content" => [
+                    "name" => "Menu"
+                ]
+            ],
+        ];
+
+        $opening = array_merge($intro, $map, $menu_acc, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
@@ -594,11 +606,12 @@ class ApiController extends Controller
             }
 
             $villages = [
-                "next" => "/",
-                "prev" => "/",
+                "next" => "menu--culture",
+                // "next" => "/",
+                // "prev" => "/",
                 "type" => "video",
                 "level" => 1,
-                "json" => "14_water_offering.json",
+                "json" => "01_culture.json",
                 "parent" => "culture",
                 "url" => "/",
                 "content" => [
@@ -612,8 +625,8 @@ class ApiController extends Controller
                     "no-auto-next-button" => true,
                     "powered-by-earch" => !0,
                     "mapCoord" => [
-                        "lat" => (double)$item->lat,
-                        "lng" => (double)$item->long
+                        "lat" => (float) $item->lat,
+                        "lng" => (float) $item->long
                     ],
                     "mapIcon" => "map-world.png",
                     "titlecard" => [
@@ -661,8 +674,8 @@ class ApiController extends Controller
                         "no-auto-next-button" => false,
                         "powered-by-earch" => !0,
                         "mapCoord" => [
-                            "lat" => (double)$val->lat,
-                            "lng" => (double)$val->long
+                            "lat" => (float) $val->lat,
+                            "lng" => (float) $val->long
                         ],
                         "mapIcon" => "map-world.png",
                         "titlecard" => [
