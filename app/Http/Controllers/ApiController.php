@@ -625,7 +625,7 @@ class ApiController extends Controller
                 "level" => 1,
                 "json" => "01_culture.json",
                 "parent" => "/",
-                "url" => "/",
+                "url" => "culture",
                 "content" => [
                     "name" => $item->name,
                     "number" => $i,
