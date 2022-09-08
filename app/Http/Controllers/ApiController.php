@@ -152,88 +152,13 @@ class ApiController extends Controller
         $villages = [];
         $products = [];
         $trips = [];
-        $pano = [
-            "street" => [
-                "next" => "/",
-                "prev" => "/",
-                "type" => "pano",
-                "level" => 2,
-                "json" => "12_living_museum.json",
-                "parent" => "culture",
-                "url" => "culture/wolfman-panel",
-                "content" => [
-                    "name" => "Wolfman Panel",
-                    "number" => "1.3",
-                    "description" => "Study unique rock-art panels.",
-                    "image" => "122_wolfman_panel.jpg",
-                    "icons" => ["streetview"],
-                    "videoId" => "",
-                    "mapCoord" => [
-                        "lat" => 37.2743,
-                        "lng" => -109.64654
-                    ],
-                    "audio" => "wolfman",
-                    "thumbnail" => "wolfman-pano/pano-thumb.jpg",
-                    "tile-folder" => "wolfman-pano/",
-                    "bound" => [
-                        "sw" => [
-                            "lat" => -37.71,
-                            "lng" => -142.8
-                        ],
-                        "ne" => [
-                            "lat" => 37.71,
-                            "lng" => 142.8
-                        ]
-                    ],
-                    "markers" => [[
-                        "mapCoord" => [
-                            "lat" => 3,
-                            "lng" => -101
-                        ],
-                        "type" => "info",
-                        "text" => "Yucca stalk in full bloom",
-                        "detail" => "Ancestral Puebloans used yucca primarily for its fiber which was woven into sandals, baskets, blankets, and rope. The fleshy fruit and sweet flowers were both eaten raw, and the roots were ground to a pulp then mixed with water to be used as soap or shampoo."
-                    ], [
-                        "mapCoord" => [
-                            "lat" => 6.5,
-                            "lng" => 12
-                        ],
-                        "type" => "info",
-                        "text" => "Flute player",
-                        "detail" => "These characters often symbolize tricksters or traitors, and occasionally have sexual connotations. They first appeared in this style of rock art somewhere between AD 500 and 750. Flutes—like staffs, bows, arrows and atlatls—are often thought to be male gendered tools of fertility."
-                    ], [
-                        "mapCoord" => [
-                            "lat" => 15,
-                            "lng" => 80
-                        ],
-                        "type" => "info",
-                        "text" => "Anthropomorphic figure",
-                        "detail" => "Depictions of anthropomorphic figures, or figures with any sort of musculature, are incredibly rare in rock art from this period."
-                    ]],
-                    "mapIcon" => "living_museum_wolfman.svg",
-                    "narrators" => [[
-                        "name" => "Lyle Balenquah",
-                        "image" => "lyle_balenquah.jpg",
-                        "times" => [
-                            [0, 67]
-                        ]
-                    ]],
-                    "showNextCard" => !0,
-                    "titlecard" => [
-                        "narrators" => [[
-                            "name" => "Lyle",
-                            "image" => "lyle_balenquah.jpg"
-                        ]]
-                    ]
-                ]
-            ]
-        ];
+        
         $opening = array_merge($intro, $map, $exp, $villages, $products, $trips);
 
         $i = 1;
         $items = Village::all();
 
-        $menu1 = [
+        /* $menu1 = [
             "type" => "video",
             "level" => 1,
             "url" => "/",
@@ -255,7 +180,7 @@ class ApiController extends Controller
             ],
         ];
 
-        array_push($opening, $menu1);
+        array_push($opening, $menu1) */;
 
         foreach ($items as $item) {
 
@@ -278,7 +203,7 @@ class ApiController extends Controller
                     "name" => $item->name,
                     "number" => 1 . '.' . $i,
                     "description" => $item->description,
-                    "icons" => ["culture"],
+                    "icons" => ["temple"],
                     "image" => $imageLink,
                     "videoId" => $item->video_id,
                     "no-auto-next-button" => false,
@@ -296,7 +221,7 @@ class ApiController extends Controller
                             ]
                         ]
                     ],
-                    "showNextCard" => !1
+                    // "showNextCard" => !1
                 ]
             ];
 
@@ -357,7 +282,7 @@ class ApiController extends Controller
         $p = 1;
         $itemProducts = Product::all();
 
-        $menu2 = [
+        /* $menu2 = [
             "type" => "video",
             "level" => 1,
             "url" => "/",
@@ -379,10 +304,10 @@ class ApiController extends Controller
             ],
         ];
 
-        array_push($opening, $menu2);
+        array_push($opening, $menu2); */
 
         foreach ($itemProducts as $item) {
-
+            
             $imageLink = Storage::url('/assets/products/images/' . $item->image);
             if (substr($item->image, 0, 5) == 'https') {
                 $imageLink = $item->image;
@@ -430,7 +355,7 @@ class ApiController extends Controller
         $t = 1;
         $itemTrips = Trip::all();
 
-        $menu3 = [
+        /* $menu3 = [
             "type" => "video",
             "level" => 1,
             "url" => "/",
@@ -452,7 +377,7 @@ class ApiController extends Controller
             ],
         ];
 
-        array_push($opening, $menu3);
+        array_push($opening, $menu3); */
 
         foreach ($itemTrips as $item) {
 
