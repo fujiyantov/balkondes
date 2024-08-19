@@ -15,10 +15,10 @@ class CreateProductTestimonialsTable extends Migration
     {
         Schema::create('product_testimonials', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->text('comment');
-            $table->string('image')->nullable();
+            $table->string('name')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->text('comment')->nullable();
+            $table->string('image')->nullable()->nullable();
             $table->unsignedBigInteger('is_published')->default(1);
             $table->timestamps();
         });

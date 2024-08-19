@@ -14,7 +14,7 @@ class ProductTestimonialFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
+            'name' => $this->faker->firstName(),
             'product_id' => $this->faker->numberBetween(1, 20),
             'comment' => $this->faker->text(),
             'image' => $this->faker->imageUrl(),
